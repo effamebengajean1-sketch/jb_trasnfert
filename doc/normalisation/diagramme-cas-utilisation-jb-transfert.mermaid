@@ -1,0 +1,36 @@
+flowchart LR
+    Utilisateur(["👤 Utilisateur
+    (authentifié)"])
+    Visiteur(["👤 Visiteur
+    (destinataire, sans compte)"])
+
+    subgraph SYS["JB Transfert"]
+        UC1(("S'inscrire"))
+        UC2(("Se connecter"))
+        UC3(("Créer une galerie"))
+        UC4(("Uploader des photos"))
+        UC5(("Générer un lien
+        de partage"))
+        UC6(("Supprimer une galerie"))
+        UC7(("Consulter une galerie
+        via lien"))
+        UC8(("Zoomer une photo"))
+        UC9(("Télécharger une photo
+        en qualité d'origine"))
+    end
+
+    Utilisateur --- UC1
+    Utilisateur --- UC2
+    Utilisateur --- UC3
+    Utilisateur --- UC4
+    Utilisateur --- UC5
+    Utilisateur --- UC6
+
+    Visiteur --- UC7
+    Visiteur --- UC8
+    Visiteur --- UC9
+
+    UC3 -. "inclut" .-> UC5
+    UC4 -. "nécessite" .-> UC3
+    UC7 -. "précède" .-> UC8
+    UC7 -. "précède" .-> UC9

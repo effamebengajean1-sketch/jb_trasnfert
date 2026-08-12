@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JB Transfert Admin - Tableau de Bord</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Sora:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#323b42",
+                    "secondary": "#005fac",
+                    "surface-dim": "#d9d9e1",
+                    "surface-container-high": "#e7e8ef",
+                    "tertiary-fixed-dim": "#bec8d0",
+                    "surface-bright": "#f9f9ff",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2e3036",
+                    "secondary-fixed-dim": "#a4c9ff",
+                    "on-primary-fixed-variant": "#00458f",
+                    "secondary-container": "#5fa6fd",
+                    "outline": "#737783",
+                    "secondary-fixed": "#d4e3ff",
+                    "on-secondary-container": "#003a6d",
+                    "surface-container-highest": "#e2e2e9",
+                    "on-tertiary-fixed": "#141d23",
+                    "on-secondary-fixed-variant": "#004884",
+                    "primary-container": "#0b4f9e",
+                    "surface-variant": "#e2e2e9",
+                    "surface": "#f9f9ff",
+                    "on-primary-container": "#a6c4ff",
+                    "surface-container": "#ededf5",
+                    "on-secondary-fixed": "#001c39",
+                    "on-surface": "#191c21",
+                    "on-primary": "#ffffff",
+                    "background": "#f9f9ff",
+                    "tertiary-container": "#495259",
+                    "inverse-primary": "#abc7ff",
+                    "surface-container-low": "#f3f3fa",
+                    "on-background": "#191c21",
+                    "primary-fixed-dim": "#abc7ff",
+                    "outline-variant": "#c2c6d3",
+                    "on-tertiary-container": "#bcc5cd",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#d7e3ff",
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#424751",
+                    "on-tertiary-fixed-variant": "#3f484f",
+                    "inverse-on-surface": "#f0f0f8",
+                    "primary": "#003877",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#dbe4ec",
+                    "on-primary-fixed": "#001b3f",
+                    "surface-tint": "#245dad"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1200px",
+                    "lg": "24px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "base": "4px",
+                    "xl": "48px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Sora"],
+                    "headline-xl": ["Sora"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Sora"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Sora"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .card-shadow {
+        box-shadow: 0px 4px 20px rgba(15, 27, 45, 0.08);
+      }
+      body {
+        background-color: #f9f9ff;
+        font-family: 'Inter', sans-serif;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #c2c6d3;
+        border-radius: 10px;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface">
+<!-- NavigationDrawer (Shared Component) -->
+<nav class="h-screen w-64 fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant flex flex-col p-md gap-sm z-50">
+<div class="flex flex-col gap-xs mb-lg px-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-3xl">security</span>
+<span class="font-headline-sm text-headline-sm font-bold text-primary">Admin Console</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">JB Transfert Root • v2.4.0</p>
+</div>
+<div class="flex flex-col gap-sm flex-grow">
+<!-- Active: Dashboard -->
+<a class="flex items-center gap-md bg-secondary-container text-on-secondary-container rounded-xl px-md py-sm transition-transform duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high rounded-xl px-md py-sm transition-all transition-transform duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Users</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high rounded-xl px-md py-sm transition-all transition-transform duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span class="font-body-md text-body-md">Transfers</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high rounded-xl px-md py-sm transition-all transition-transform duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined">monitor_heart</span>
+<span class="font-body-md text-body-md">System Health</span>
+</a>
+</div>
+<div class="mt-auto pt-md border-t border-outline-variant px-md">
+<div class="flex items-center gap-sm">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Professional corporate headshot of a system administrator in a clean modern office, soft high-key lighting, focused and trustworthy expression, minimalist blue-toned background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfk4vckkLYWAtwQuAed4_vZ5RLa0PPBPKlJTrY0Uro7OjmfAZbvjaPGfMD7fT0YwAHYM33FrnNmgTnc5kKE5myIBFQl7tHyBoV6wZvw2_U_jvqTmbdGB4LAKJa5iu4v4OQrDtfmehVW0lrfsTfRxTaMThZmbGl5TvzqgigZVnSB81NaK89nPCYuYXdPy-9qE4vZ8uVZqjaocyFglSbWLzotsgCDhayVQ6z8HIziTcBuAIDiqHj3ct2Tw"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold">Admin Profile</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Super User</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar (Shared Component) -->
+<header class="w-full top-0 bg-surface border-b border-outline-variant shadow-sm sticky z-40">
+<div class="flex justify-between items-center px-lg py-md w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-md">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Vue d'ensemble</h1>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-sm px-md py-sm bg-surface-container-low rounded-full border border-outline-variant cursor-pointer hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-primary">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm w-48" placeholder="Rechercher un transfert..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high p-sm rounded-full transition-colors cursor-pointer">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high p-sm rounded-full transition-colors cursor-pointer">settings</button>
+</div>
+</div>
+</header>
+<!-- Canvas / Dashboard Content -->
+<section class="p-lg max-w-container-max w-full mx-auto flex flex-col gap-xl">
+<!-- Statistics Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Card 1: Users -->
+<div class="bg-surface-container-lowest p-lg rounded-xl card-shadow border border-outline-variant flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<div class="p-sm bg-primary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-primary-container">group</span>
+</div>
+<span class="text-green-600 font-label-sm flex items-center gap-xs">+12% <span class="material-symbols-outlined text-sm">trending_up</span></span>
+</div>
+<div class="mt-md">
+<p class="font-label-md text-label-md text-on-surface-variant">Utilisateurs actifs</p>
+<h2 class="font-headline-lg text-headline-lg text-primary">1,284</h2>
+</div>
+<div class="mt-sm h-1 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[75%]"></div>
+</div>
+</div>
+<!-- Card 2: Storage -->
+<div class="bg-surface-container-lowest p-lg rounded-xl card-shadow border border-outline-variant flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<div class="p-sm bg-primary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-primary-container">database</span>
+</div>
+<span class="text-on-surface-variant font-label-sm">Total: 10 TB</span>
+</div>
+<div class="mt-md">
+<p class="font-label-md text-label-md text-on-surface-variant">Stockage utilisé</p>
+<h2 class="font-headline-lg text-headline-lg text-primary">4.2 TB</h2>
+</div>
+<div class="mt-sm h-1 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[42%]"></div>
+</div>
+</div>
+<!-- Card 3: Transfers -->
+<div class="bg-surface-container-lowest p-lg rounded-xl card-shadow border border-outline-variant flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<div class="p-sm bg-primary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-primary-container">swap_vert</span>
+</div>
+<span class="text-on-surface-variant font-label-sm">Peak: 1.2 GB/s</span>
+</div>
+<div class="mt-md">
+<p class="font-label-md text-label-md text-on-surface-variant">Transferts aujourd'hui</p>
+<h2 class="font-headline-lg text-headline-lg text-primary">8,432</h2>
+</div>
+<div class="mt-sm h-1 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[60%]"></div>
+</div>
+</div>
+</div>
+<!-- Graph Section -->
+<div class="bg-surface-container-lowest p-lg rounded-xl card-shadow border border-outline-variant relative overflow-hidden min-h-[400px] flex flex-col gap-lg">
+<div class="flex justify-between items-center z-10">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Croissance de l'utilisation</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Volume de données transférées sur les 30 derniers jours</p>
+</div>
+<div class="flex gap-sm">
+<button class="px-md py-sm bg-surface-container-low text-label-sm font-medium rounded-lg border border-outline-variant hover:bg-surface-container-high transition-all">Export CSV</button>
+<select class="px-md py-sm bg-surface-container-lowest text-label-sm font-medium rounded-lg border border-outline-variant focus:ring-primary focus:border-primary">
+<option>30 derniers jours</option>
+<option>7 derniers jours</option>
+<option>Dernier mois</option>
+</select>
+</div>
+</div>
+<!-- Simple SVG Graph Simulation -->
+<div class="flex-grow flex items-end justify-between px-md pb-lg gap-sm min-h-[200px]">
+<div class="w-full h-32 bg-primary-container/5 rounded-t-lg relative group transition-all hover:bg-primary-container/10 cursor-pointer">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-lg transition-all" style="height: 40%"></div>
+</div>
+<div class="w-full h-32 bg-primary-container/5 rounded-t-lg relative group transition-all hover:bg-primary-container/10 cursor-pointer">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-lg transition-all" style="height: 55%"></div>
+</div>
+<div class="w-full h-32 bg-primary-container/5 rounded-t-lg relative group transition-all hover:bg-primary-container/10 cursor-pointer">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-lg transition-all" style="height: 45%"></div>
+</div>
+<div class="w-full h-32 bg-primary-container/5 rounded-t-lg relative group transition-all hover:bg-primary-container/10 cursor-pointer">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-lg transition-all" style="height: 70%"></div>
+</div>
+<div class="w-full h-32 bg-primary-container/5 rounded-t-lg relative group transition-all hover:bg-primary-container/10 cursor-pointer">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-lg transition-all" style="height: 60%"></div>
+</div>
+<div class="w-full h-32 bg-primary-container/5 rounded-t-lg relative group transition-all hover:bg-primary-container/10 cursor-pointer">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-lg transition-all" style="height: 85%"></div>
+</div>
+<div class="w-full h-32 bg-primary-container/5 rounded-t-lg relative group transition-all hover:bg-primary-container/10 cursor-pointer">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-lg transition-all" style="height: 95%"></div>
+</div>
+</div>
+<div class="flex justify-between text-label-sm text-on-surface-variant px-md italic">
+<span>Semaine 1</span>
+<span>Semaine 2</span>
+<span>Semaine 3</span>
+<span>Semaine 4</span>
+</div>
+</div>
+<!-- Recent Transfers List -->
+<div class="bg-surface-container-lowest rounded-xl card-shadow border border-outline-variant overflow-hidden">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Transferts récents</h3>
+<button class="text-primary font-label-md hover:underline transition-all">Voir tout</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-lg py-md font-label-md text-on-surface-variant">ID Transfert</th>
+<th class="px-lg py-md font-label-md text-on-surface-variant">Utilisateur</th>
+<th class="px-lg py-md font-label-md text-on-surface-variant">Fichier(s)</th>
+<th class="px-lg py-md font-label-md text-on-surface-variant">Taille</th>
+<th class="px-lg py-md font-label-md text-on-surface-variant">Statut</th>
+<th class="px-lg py-md font-label-md text-on-surface-variant">Date</th>
+<th class="px-lg py-md font-label-md text-on-surface-variant"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<td class="px-lg py-md font-body-sm">#TR-92834</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container text-xs font-bold">JD</div>
+<span class="font-body-sm">Jean Dupont</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-sm">Projet_Rendu_Final.zip</td>
+<td class="px-lg py-md font-body-sm">2.4 GB</td>
+<td class="px-lg py-md">
+<span class="px-sm py-xs bg-green-100 text-green-700 text-xs font-bold rounded-full">Terminé</span>
+</td>
+<td class="px-lg py-md font-body-sm text-on-surface-variant">14:23</td>
+<td class="px-lg py-md text-right">
+<button class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<td class="px-lg py-md font-body-sm">#TR-92835</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed text-xs font-bold">ML</div>
+<span class="font-body-sm">Marie Laurent</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-sm">Photos_Session_ETE.7z</td>
+<td class="px-lg py-md font-body-sm">842 MB</td>
+<td class="px-lg py-md">
+<span class="px-sm py-xs bg-blue-100 text-blue-700 text-xs font-bold rounded-full">En cours</span>
+</td>
+<td class="px-lg py-md font-body-sm text-on-surface-variant">14:15</td>
+<td class="px-lg py-md text-right">
+<button class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<td class="px-lg py-md font-body-sm">#TR-92836</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed text-xs font-bold">AS</div>
+<span class="font-body-sm">Ahmed Saidi</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-sm">Database_Backup_24.sql</td>
+<td class="px-lg py-md font-body-sm">15.2 GB</td>
+<td class="px-lg py-md">
+<span class="px-sm py-xs bg-green-100 text-green-700 text-xs font-bold rounded-full">Terminé</span>
+</td>
+<td class="px-lg py-md font-body-sm text-on-surface-variant">13:58</td>
+<td class="px-lg py-md text-right">
+<button class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<td class="px-lg py-md font-body-sm">#TR-92837</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container text-xs font-bold">SM</div>
+<span class="font-body-sm">Sophie Martin</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-sm">Video_Rush_01.mp4</td>
+<td class="px-lg py-md font-body-sm">4.1 GB</td>
+<td class="px-lg py-md">
+<span class="px-sm py-xs bg-red-100 text-red-700 text-xs font-bold rounded-full">Échoué</span>
+</td>
+<td class="px-lg py-md font-body-sm text-on-surface-variant">13:42</td>
+<td class="px-lg py-md text-right">
+<button class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">more_vert</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-md bg-surface-container-lowest border-t border-outline-variant flex justify-center">
+<nav class="flex gap-sm">
+<button class="p-sm hover:bg-surface-container rounded-lg disabled:opacity-50" disabled=""><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="px-md py-sm bg-primary-container text-white text-xs font-bold rounded-lg">1</button>
+<button class="px-md py-sm hover:bg-surface-container text-on-surface-variant text-xs font-bold rounded-lg">2</button>
+<button class="px-md py-sm hover:bg-surface-container text-on-surface-variant text-xs font-bold rounded-lg">3</button>
+<button class="p-sm hover:bg-surface-container rounded-lg"><span class="material-symbols-outlined">chevron_right</span></button>
+</nav>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="mt-auto p-lg text-center border-t border-outline-variant bg-surface-container-lowest">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                © 2024 JB Transfert Admin Portal. Tous droits réservés. Sécurité de niveau entreprise.
+            </p>
+</footer>
+</main>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Simple logic for interactive elements
+        document.querySelectorAll('.active\\:scale-95').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+
+        // Search bar interaction
+        const searchInput = document.querySelector('input[placeholder="Rechercher un transfert..."]');
+        searchInput.parentElement.addEventListener('click', () => {
+            searchInput.focus();
+        });
+    </script>
+</body></html>

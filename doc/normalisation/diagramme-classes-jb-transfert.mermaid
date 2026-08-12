@@ -1,0 +1,51 @@
+classDiagram
+    class Utilisateur {
+        +String id
+        +String email
+        +String motDePasseHash
+        +String nom
+        +DateTime dateCreation
+        +inscrire(email, motDePasse, nom) Utilisateur
+        +seConnecter(email, motDePasse) String
+    }
+
+    class Galerie {
+        +String id
+        +String titre
+        +String slug
+        +DateTime dateCreation
+        +String utilisateurId
+        +genererSlugUnique() String
+        +ajouterPhoto(fichier) Photo
+        +supprimer() void
+    }
+
+    class Photo {
+        +String id
+        +String nomFichier
+        +String cheminFichier
+        +Int tailleOctets
+        +String formatMime
+        +DateTime dateUpload
+        +String galerieId
+        +estFormatValide() Boolean
+        +estTailleValide() Boolean
+    }
+
+    class ServiceUpload {
+        +validerFichier(fichier) Boolean
+        +enregistrerSurDisque(fichier) String
+        +creerPhoto(galerieId, fichier) Photo
+    }
+
+    class ServiceAuth {
+        +hasherMotDePasse(motDePasse) String
+        +verifierMotDePasse(motDePasse, hash) Boolean
+        +genererToken(utilisateurId) String
+    }
+
+    Utilisateur "1" --> "0..*" Galerie : possède
+    Galerie "1" --> "0..*" Photo : contient
+    ServiceUpload ..> Photo : crée
+    ServiceUpload ..> Galerie : cible
+    ServiceAuth ..> Utilisateur : authentifie

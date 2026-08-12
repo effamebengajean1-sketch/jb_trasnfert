@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Galerie Partagée | JB Transfert</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Sora:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#d7e3ff",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e7e8ef",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#bcc5cd",
+                    "primary-container": "#0b4f9e",
+                    "on-primary-container": "#a6c4ff",
+                    "surface-container-low": "#f3f3fa",
+                    "secondary-fixed": "#d4e3ff",
+                    "on-secondary-fixed-variant": "#004884",
+                    "background": "#f9f9ff",
+                    "on-surface": "#191c21",
+                    "tertiary": "#323b42",
+                    "surface-container": "#ededf5",
+                    "outline-variant": "#c2c6d3",
+                    "on-background": "#191c21",
+                    "tertiary-fixed": "#dbe4ec",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#abc7ff",
+                    "on-primary-fixed-variant": "#00458f",
+                    "on-primary-fixed": "#001b3f",
+                    "surface-variant": "#e2e2e9",
+                    "primary": "#003877",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#003a6d",
+                    "outline": "#737783",
+                    "on-tertiary-fixed-variant": "#3f484f",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#001c39",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#f0f0f8",
+                    "surface-tint": "#245dad",
+                    "surface": "#f9f9ff",
+                    "tertiary-container": "#495259",
+                    "surface-bright": "#f9f9ff",
+                    "secondary": "#005fac",
+                    "primary-fixed-dim": "#abc7ff",
+                    "secondary-fixed-dim": "#a4c9ff",
+                    "inverse-surface": "#2e3036",
+                    "tertiary-fixed-dim": "#bec8d0",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#141d23",
+                    "surface-container-highest": "#e2e2e9",
+                    "on-surface-variant": "#424751",
+                    "secondary-container": "#5fa6fd",
+                    "surface-dim": "#d9d9e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "gutter": "24px",
+                    "container-max": "1200px",
+                    "md": "16px",
+                    "base": "4px",
+                    "xs": "4px",
+                    "margin-mobile": "16px",
+                    "xl": "48px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Sora"],
+                    "body-lg": ["Inter"],
+                    "headline-sm": ["Sora"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Sora"],
+                    "headline-xl": ["Sora"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .photo-grid-item {
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            cursor: zoom-in;
+            transition: opacity 0.3s ease;
+        }
+        .photo-grid-item:hover {
+            opacity: 0.9;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Gallery Header: Simple and Unobtrusive -->
+<header class="w-full pt-xl pb-lg px-gutter max-w-container-max mx-auto text-center">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Expédition Islande 2024</h1>
+<p class="font-label-md text-label-md text-on-surface-variant mt-sm flex items-center justify-center gap-base">
+<span class="material-symbols-outlined text-[18px]">info</span>
+            Cliquez sur une image pour l'agrandir
+        </p>
+</header>
+<!-- Main Content: Full-width Bento-style Grid -->
+<main class="w-full px-gutter max-w-container-max mx-auto pb-xl">
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-sm lg:gap-md">
+<!-- Photo 1: Large Featured -->
+<div class="photo-grid-item relative group col-span-2 row-span-2 rounded-xl" onclick="openLightbox(0)">
+<img class="w-full h-full object-cover" data-alt="A breathtaking aerial view of a winding blue river cutting through black volcanic sand in Iceland. The lighting is cold and ethereal, with soft morning mist clinging to the jagged mountain peaks in the distance. The composition is clean and minimalist, dominated by deep blues and charcoals, fitting a professional corporate modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCimqaFsXiSjIjG9j_vr17stGV9EX4gLwA8WH7pChkhdpEa28nm0vpxfjbn2pxIaVI7xDFI-aky7eemzjAMzhsY9vcA0n2uoexBr9N7nJH-0M5yYCcXAOzYI0oOQul_Yiz0enyt2ds3RmwHM2kYSthoxyjW6nNSlOOLJzDVo_ZponsyK2_RGVY-eQWnEYaNXkk7DwSoGqj5WNig-F3gyS4ihOeiX00MpbyqoEvoVLHW-v0POW0XpoZ-nA"/>
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-4xl">fullscreen</span>
+</div>
+</div>
+<!-- Photo 2 -->
+<div class="photo-grid-item relative group rounded-xl" onclick="openLightbox(1)">
+<img class="w-full h-full object-cover" data-alt="Close-up detail of crystal-clear ice chunks washed up on a pitch-black Diamond Beach in Iceland. Sunlight refracts through the ice, creating brilliant white and azure highlights. The scene is shot with a shallow depth of field, emphasizing the crisp textures of the ice against the dark sand, maintaining a high-trust, technical photographic quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqBeA0wCR0zlJ3wJHY9VQsgUUEojRQw9Dk6vrwDQdZlAixpu_ivgGfxcu2tJWcvIlPk5ab3ZU7Y2JdrOun0hXPz4dQaRFdPCJ5Wu4Y0Ibjai2ziS4e82KjgCJ6Dgjc1msk1GJ3Yt4YcQOWEKF8okAzlfCly00iloMtJlkjXfN1rLTW0WRGCaK_YsPpCDYSqeOazk1LejEdqEOuopd28jvfLQ12l13s1G5HkHLzp7Q1IBKavYrg6nowig"/>
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">fullscreen</span>
+</div>
+</div>
+<!-- Photo 3 -->
+<div class="photo-grid-item relative group rounded-xl" onclick="openLightbox(2)">
+<img class="w-full h-full object-cover" data-alt="A minimalist architectural shot of a modern Icelandic cabin nestled in a vast, snow-covered landscape. The cabin features dark wood and large glass panels reflecting a pale blue twilight sky. The overall mood is serene, quiet, and sophisticated, with a color palette of whites, light greys, and deep blues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3e7u8QtaMUuXffT9N5Ll9_QphCP9y0V_soMw35oLVdQSDvoXqFCshCeKXtOQb-aDmMA8K2R63y0iHlyHjftVKP7QcTiAQZpRKE8CSAnO4jh-3-C3oFLtFChL5gxni71Gc3W0M7NqWXQvw-SOMjr7uqET44PLs6p9doFDt9-PRMcHy0PG6yNeVS85jfzd5e7mwoFjMZauLBzH_2cNog0d_uA6Enwj70GoWaSXyZL7DHwzyNi9ca26_gw"/>
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">fullscreen</span>
+</div>
+</div>
+<!-- Photo 4 -->
+<div class="photo-grid-item relative group rounded-xl" onclick="openLightbox(3)">
+<img class="w-full h-full object-cover" data-alt="A powerful waterfall cascading over mossy green cliffs under a moody, overcast sky. The long exposure creates a silky, white water effect that contrasts sharply with the dark rocks. The image conveys strength and reliability, captured with professional precision and balanced natural lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHWbmTCIaIqNG10sNyiRGH4IGvDW-_g4tkF6oTnDtBya1H9KlQDfV1n8rDnaWG_zpUnVWsYBS713AyDfpdAzcGsCvdwlKq9ZJMdTSW4abUqDZ8mbLdkduhWVUb8os6BWr7zzdSXqCAdQ6PrZcBOySvt5uQZNqftQHN8EV0SpW4I2TgfM2kgkuD82ti5JsmcoB9POIdpVV3N2sdzt965353Z_bkYkdnlSDzukY7jAbDLdkSj2RtwqkSmw"/>
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">fullscreen</span>
+</div>
+</div>
+<!-- Photo 5 -->
+<div class="photo-grid-item relative group rounded-xl" onclick="openLightbox(4)">
+<img class="w-full h-full object-cover" data-alt="An abstract patterns of geothermal steam rising from bright turquoise mineral pools. The colors are vibrant yet naturally grounded, with soft edges and a dreamlike atmospheric quality. The lighting is diffuse, avoiding harsh shadows to maintain a clean, light-mode visual consistency." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw2IPDjTSABwb7qGYBfUBYZrfHwsY25aAlvzEReh7Xj-fw_tkvCYFFze3OeuaUcTmSy0Zr4q8FkmavWeELBcTf1FTq6WingyzW26rfd0cbv7mAFRPZq6aSsEe5D620jDbFjbqi-gIbmTUY2aSIObLCthelB1qwKuC1InRy6VLt80AuO6V7ONLz5tWV5Au-sAYimp2rNZvBLm3H-82PJU5CbKuRRHfODsYfi0q6e9bZF1ufl_nlkwh_MQ"/>
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">fullscreen</span>
+</div>
+</div>
+<!-- Photo 6 -->
+<div class="photo-grid-item relative group rounded-xl" onclick="openLightbox(5)">
+<img class="w-full h-full object-cover" data-alt="A lonely red-roofed church standing against a backdrop of massive, snow-capped mountains and a dramatic grey sky. The red provides a singular, sharp accent in an otherwise monochrome landscape. The photograph is composed with symmetrical balance, evoking a sense of calm and technical mastery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCG0oo0_Na9jN77ggFU_x1xJIqLUYEf8Q6ASTR4WOk4ohhTVy5z7bh9WkGEs4yOfZqkqI8dXdbjRRgIij61IlkmCgUeVPer-2Krkp2Y38W98yheQ2HRxT0lmVBaDzjzpxEIhRFoYlDi6nFBbnT6me18p311EEOPaAK7cNFSwxc0P632uKDSlLtc8Kcov9q63C4H9znGRQi1Igu81l-779ftkKxz4OTv3IDUqwmUWVjFBpwVALfVchzDng"/>
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">fullscreen</span>
+</div>
+</div>
+<!-- Photo 7: Wide -->
+<div class="photo-grid-item relative group col-span-2 rounded-xl" onclick="openLightbox(6)">
+<img class="w-full h-full object-cover" data-alt="Wide panoramic shot of a rugged coastline where deep blue waves crash against sharp basalt columns. The lighting is dramatic, capturing the spray of the ocean in high detail. The cool blue tones and sharp textures reflect the corporate modern and high-trust aesthetic of the platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_tYRleGlmr9eQCoY3LuOFfYbqZN71qRDEb0H5YgmPPJrYwhn17iz2MKxEBo7v790elI76OO8Q0VL84id9UD4cRe4vLjHUUgnhtGMDhjbYBv5d5wuEVh5Qc5m5u9v-G4FHfKew-eTXFVr1G25d0n_tkJEiYsF__PrNQF27qx9BhqVN4x34OHiUAftIHzTD0vOT90DQ6c1esD_uWxU0yZYyjHFEYcK1Zs9h4I0t2YlpfPuLnmuzyRB58w"/>
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-4xl">fullscreen</span>
+</div>
+</div>
+<!-- Photo 8 -->
+<div class="photo-grid-item relative group rounded-xl" onclick="openLightbox(7)">
+<img class="w-full h-full object-cover" data-alt="A minimalist portrait of a wild Icelandic horse with a thick mane, standing in a field of golden grass during the midnight sun. The light is warm and soft, casting long shadows. The subject is centered and clear, maintaining the platform's focus on high-quality, professional-grade imagery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDldIw50ovKXXFch4nzA2GdiLq2PJOweYAbaCHfc4gUBmCsHKL99fYKoYM0bQ-cqtH1UyFwdOK94sXFw3QDPNmjpAGOC1hm9mnFuLcpQX5-ZdELMjTTVkL8z7VnDLuaHWugcTc9QXLl8K76UwdKySUu5VOeh-sm-aaGnb6dWLhVnJnS990BtQz1FiuHG9LdrNUyrHu-GbbxeSivpUbx8wZOWtjrNxK91KPcQC6Oz_vA82nqarnTB9kt4g"/>
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">fullscreen</span>
+</div>
+</div>
+<!-- Photo 9 -->
+<div class="photo-grid-item relative group rounded-xl" onclick="openLightbox(8)">
+<img class="w-full h-full object-cover" data-alt="Macro shot of volcanic rock textures with small patches of neon green moss. The contrast between the rough black surface and the vibrant organic growth is sharp and detailed. The lighting is bright and even, highlighting the technical complexity of the natural world in a clean, modern style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBC60eRiD7VjbDy-ZQVMd5IVdgf355dRqPKVGh0_4rTARvNY7COq8nxFV4LhN_NoCSRd5i6dMxTkKbkbJcz70XwTogaNlCwDQmZGCyOARFv-SUJ5NITp4qaJk2PEnQ0e1kbiiVF8NVdPW-toYcKz9nhEWEHKd2iYkdG_Wn6-O0GBnBJfe__sY7d5YSgcK5xAf9Qalofwgn9BRgpO2PWRZYyAKeRjA7_KLUBfNnMD-C2Sxfw0dctdueeYA"/>
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">fullscreen</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Discreet Footer -->
+<footer class="w-full py-xl px-gutter flex flex-col items-center border-t border-outline-variant bg-surface-container-lowest">
+<div class="flex flex-col md:flex-row items-center gap-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Partagé via JB Transfert</span>
+<span class="hidden md:block text-outline-variant">•</span>
+<a class="font-label-sm text-label-sm text-primary font-bold hover:underline transition-all active:opacity-80" href="#">Créer un compte</a>
+</div>
+<p class="font-label-sm text-label-sm text-outline mt-md">© 2024 JB Transfert. Tous droits réservés.</p>
+</footer>
+<!-- Minimal Lightbox / Viewer (Hidden by default) -->
+<div class="fixed inset-0 z-[100] bg-on-surface/95 flex flex-col hidden backdrop-blur-sm transition-all duration-300" id="lightbox">
+<div class="flex justify-end p-gutter">
+<button class="text-white hover:bg-white/10 p-base rounded-full transition-colors" onclick="closeLightbox()">
+<span class="material-symbols-outlined text-3xl">close</span>
+</button>
+</div>
+<div class="flex-grow flex items-center justify-center p-md">
+<img alt="Agrandissement" class="max-w-full max-h-[707px] object-contain shadow-2xl rounded-lg" id="lightbox-img" src=""/>
+</div>
+<div class="p-gutter text-center">
+<p class="text-white/80 font-label-md" id="lightbox-caption"></p>
+</div>
+</div>
+<script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const images = document.querySelectorAll('.photo-grid-item img');
+
+        function openLightbox(index) {
+            const imgSrc = images[index].src;
+            lightboxImg.src = imgSrc;
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add('hidden');
+            lightbox.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close on ESC
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // Close on background click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target.parentElement === lightbox) {
+                closeLightbox();
+            }
+        });
+    </script>
+</body></html>

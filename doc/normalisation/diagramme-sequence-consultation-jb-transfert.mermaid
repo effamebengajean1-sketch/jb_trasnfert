@@ -1,0 +1,29 @@
+sequenceDiagram
+    actor V as Visiteur
+    participant F as Frontend (Nuxt - layout public)
+    participant R as public.routes
+    participant C as public.controller
+    participant S as public.service
+    participant P as Prisma / PostgreSQL
+
+    V->>F: Ouvre le lien /g/:slug
+    F->>R: GET /public/galleries/:slug
+    Note over R: Aucun middleware d'authentification appliqué
+    R->>C: Transmet la requête
+    C->>S: recupererParSlug(slug)
+    S->>P: SELECT galerie + photos WHERE slug = :slug
+    alt Slug introuvable
+        P-->>S: Aucun résultat
+        S-->>C: null
+        C-->>F: 404 Not Found { error }
+        F-->>V: Affiche page "Galerie introuvable"
+    else Galerie trouvée
+        P-->>S: Galerie + photos
+        S-->>C: Données galerie
+        C-->>F: 200 OK { galerie, photos }
+        F-->>V: Affiche GalleryGrid
+        V->>F: Clique sur une photo
+        F-->>V: Ouvre PhotoLightbox (zoom)
+        V->>F: Clique sur "Télécharger"
+        F-->>V: Télécharge le fichier en qualité d'origine
+    end

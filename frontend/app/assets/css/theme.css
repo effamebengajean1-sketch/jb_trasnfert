@@ -1,0 +1,122 @@
+/* ═══ TRANSITIONS GLOBALES THÈME ═══ */
+/* Applique une transition fluide sur TOUTES les propriétés de couleur */
+html,
+html body,
+html header,
+html footer,
+html nav,
+html main,
+html div,
+html button,
+html a,
+html input,
+html .bg-surface,
+html .bg-background,
+html .bg-surface-container,
+html .bg-surface-container-low,
+html .bg-surface-container-lowest,
+html .text-on-surface,
+html .text-on-background,
+html .border-outline-variant {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+:root {
+  --color-surface: #f9f9ff;
+  --color-surface-dim: #d9d9e1;
+  --color-surface-bright: #f9f9ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f3f3fa;
+  --color-surface-container: #ededf5;
+  --color-surface-container-high: #e7e8ef;
+  --color-surface-container-highest: #e2e2e9;
+  --color-on-surface: #191c21;
+  --color-on-surface-variant: #424751;
+  --color-inverse-surface: #2e3036;
+  --color-inverse-on-surface: #f0f0f8;
+  --color-outline: #737783;
+  --color-outline-variant: #c2c6d3;
+  --color-surface-tint: #245dad;
+  --color-primary: #003877;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #0b4f9e;
+  --color-on-primary-container: #a6c4ff;
+  --color-inverse-primary: #abc7ff;
+  --color-secondary: #005fac;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #5fa6fd;
+  --color-on-secondary-container: #003a6d;
+  --color-tertiary: #323b42;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #495259;
+  --color-on-tertiary-container: #bcc5cd;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --color-primary-fixed: #d7e3ff;
+  --color-primary-fixed-dim: #abc7ff;
+  --color-on-primary-fixed: #001b3f;
+  --color-on-primary-fixed-variant: #00458f;
+  --color-secondary-fixed: #d4e3ff;
+  --color-secondary-fixed-dim: #a4c9ff;
+  --color-on-secondary-fixed: #001c39;
+  --color-on-secondary-fixed-variant: #004884;
+  --color-tertiary-fixed: #dbe4ec;
+  --color-tertiary-fixed-dim: #bec8d0;
+  --color-on-tertiary-fixed: #141d23;
+  --color-on-tertiary-fixed-variant: #3f484f;
+  --color-background: #f9f9ff;
+  --color-on-background: #191c21;
+  --color-surface-variant: #e2e2e9;
+}
+
+.dark {
+  --color-surface: #121214;
+  --color-surface-dim: #0f0f12;
+  --color-surface-bright: #1c1b1f;
+  --color-surface-container-lowest: #0f0f12;
+  --color-surface-container-low: #1c1b1f;
+  --color-surface-container: #211f26;
+  --color-surface-container-high: #2b2930;
+  --color-surface-container-highest: #36343b;
+  --color-on-surface: #e2e2e9;
+  --color-on-surface-variant: #c2c6d3;
+  --color-inverse-surface: #e2e2e9;
+  --color-inverse-on-surface: #2e3036;
+  --color-outline: #8e9199;
+  --color-outline-variant: #424751;
+  --color-surface-tint: #abc7ff;
+  --color-primary: #abc7ff;
+  --color-on-primary: #003877;
+  --color-primary-container: #00458f;
+  --color-on-primary-container: #d7e3ff;
+  --color-inverse-primary: #003877;
+  --color-secondary: #a4c9ff;
+  --color-on-secondary: #003a6d;
+  --color-secondary-container: #004884;
+  --color-on-secondary-container: #d4e3ff;
+  --color-tertiary: #bec8d0;
+  --color-on-tertiary: #141d23;
+  --color-tertiary-container: #3f484f;
+  --color-on-tertiary-container: #dbe4ec;
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-on-error-container: #ffdad6;
+  --color-primary-fixed: #d7e3ff;
+  --color-primary-fixed-dim: #abc7ff;
+  --color-on-primary-fixed: #001b3f;
+  --color-on-primary-fixed-variant: #00458f;
+  --color-secondary-fixed: #d4e3ff;
+  --color-secondary-fixed-dim: #a4c9ff;
+  --color-on-secondary-fixed: #001c39;
+  --color-on-secondary-fixed-variant: #004884;
+  --color-tertiary-fixed: #dbe4ec;
+  --color-tertiary-fixed-dim: #bec8d0;
+  --color-on-tertiary-fixed: #141d23;
+  --color-on-tertiary-fixed-variant: #3f484f;
+  --color-background: #121214;
+  --color-on-background: #e2e2e9;
+  --color-surface-variant: #424751;
+}

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JB Transfert - Activité</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Sora:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 24px;
+            bottom: -24px;
+            width: 2px;
+            background-color: #c2c6d3; /* outline-variant */
+            opacity: 0.5;
+        }
+        .timeline-item:last-child .timeline-line::before {
+            display: none;
+        }
+        .shadow-custom {
+            box-shadow: 0px 4px 20px rgba(15, 27, 45, 0.08);
+        }
+    </style>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f9f9ff",
+                        "inverse-surface": "#2e3036",
+                        "secondary": "#005fac",
+                        "inverse-on-surface": "#f0f0f8",
+                        "on-surface-variant": "#424751",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c2c6d3",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#abc7ff",
+                        "on-primary-fixed": "#001b3f",
+                        "on-tertiary-container": "#bcc5cd",
+                        "on-background": "#191c21",
+                        "surface-dim": "#d9d9e1",
+                        "primary-fixed-dim": "#abc7ff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#323b42",
+                        "surface-container": "#ededf5",
+                        "primary": "#003877",
+                        "on-secondary-container": "#003a6d",
+                        "surface-container-low": "#f3f3fa",
+                        "surface-container-high": "#e7e8ef",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e2e2e9",
+                        "primary-fixed": "#d7e3ff",
+                        "on-surface": "#191c21",
+                        "tertiary-fixed": "#dbe4ec",
+                        "secondary-fixed-dim": "#a4c9ff",
+                        "secondary-container": "#5fa6fd",
+                        "on-secondary-fixed-variant": "#004884",
+                        "surface": "#f9f9ff",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#245dad",
+                        "surface-container-highest": "#e2e2e9",
+                        "on-primary-fixed-variant": "#00458f",
+                        "on-tertiary-fixed": "#141d23",
+                        "on-primary-container": "#a6c4ff",
+                        "secondary-fixed": "#d4e3ff",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "tertiary-fixed-dim": "#bec8d0",
+                        "tertiary-container": "#495259",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#001c39",
+                        "primary-container": "#0b4f9e",
+                        "on-tertiary-fixed-variant": "#3f484f",
+                        "outline": "#737783"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "container-max": "1200px",
+                        "gutter": "24px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "xl": "48px",
+                        "sm": "8px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Sora"],
+                        "headline-lg": ["Sora"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Sora"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-xl": ["Sora"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background font-body-md text-on-surface">
+<!-- TopNavBar -->
+<header class="bg-surface shadow-sm sticky top-0 z-50 border-b border-outline-variant">
+<div class="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto">
+<div class="flex items-center gap-xl">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">JB Transfert</span>
+<nav class="hidden md:flex items-center gap-lg h-16">
+<a class="text-on-surface-variant font-body-md hover:bg-secondary-fixed-dim transition-colors duration-200 px-xs h-full flex items-center" href="#">Galeries</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 h-full flex items-center" href="#">Activité</a>
+<a class="text-on-surface-variant font-body-md hover:bg-secondary-fixed-dim transition-colors duration-200 px-xs h-full flex items-center" href="#">Stockage</a>
+<a class="text-on-surface-variant font-body-md hover:bg-secondary-fixed-dim transition-colors duration-200 px-xs h-full flex items-center" href="#">Aide</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="hidden md:block bg-primary text-on-primary px-lg py-sm rounded-xl font-label-md active:scale-95 transition-all">Nouvelle galerie</button>
+<div class="flex items-center gap-sm border-l border-outline-variant pl-md">
+<button class="material-symbols-outlined p-xs text-on-surface-variant hover:bg-surface-variant rounded-full" title="Account">account_circle</button>
+<button class="material-symbols-outlined p-xs text-on-surface-variant hover:bg-surface-variant rounded-full" title="Logout">logout</button>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-gutter py-xl">
+<!-- User Profile Summary Section -->
+<section class="bg-surface-container-low rounded-xl p-lg mb-xl flex flex-col md:flex-row md:items-center justify-between gap-lg border border-outline-variant">
+<div class="flex items-center gap-lg">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-fixed-dim flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a tech-focused creative professional in a clean, modern workspace. Soft natural light illuminates their face from a window. The aesthetic is bright and minimal, with hints of high-end photography equipment in the background to match the professional file sharing brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYRb5zY0x53uDZ1S-spD783SYK-lIh_PAESluXv3fpvr2aogFjLwlNd6hPQqlQsYZWlEXWAZCDWKfXC_VYf75geJXHLKc-R1OJuaA_jODcLFLwzJiqAClj68X3o6uWnDHDRAUz1v2amCbR_5zVcKtbXIgpl60R7NmijHS1OZtgVWigoowxYUDaqK10S1YjxvLhy3KNLhJp-3mHUeZDv36K2XJguSNSOXCuzEAfuEIyh0rAxlbR_DuaYg"/>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary">Jean-Baptiste Durand</h1>
+<p class="text-on-surface-variant font-body-sm">jb.durand@studio-pro.fr</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-md">
+<div class="bg-surface-container-highest px-md py-sm rounded-lg flex flex-col">
+<span class="text-label-sm text-on-surface-variant">Statut du compte</span>
+<span class="text-primary font-bold flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+                        Professionnel
+                    </span>
+</div>
+<div class="bg-surface-container-highest px-md py-sm rounded-lg flex flex-col">
+<span class="text-label-sm text-on-surface-variant">Dernière activité</span>
+<span class="text-on-surface font-body-md">Aujourd'hui, 14:32</span>
+</div>
+<div class="bg-surface-container-highest px-md py-sm rounded-lg flex flex-col">
+<span class="text-label-sm text-on-surface-variant">Usage stockage</span>
+<span class="text-on-surface font-body-md">452 GB / 1 TB</span>
+</div>
+</div>
+</section>
+<!-- Timeline Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Filter Sidebar (Optional but adds to the high-end UI feel) -->
+<aside class="lg:col-span-3 space-y-md">
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-md">Filtres</h3>
+<div class="space-y-xs">
+<button class="w-full flex items-center justify-between px-md py-sm bg-secondary-fixed text-on-secondary-fixed rounded-lg font-bold">
+<span>Tous les événements</span>
+<span class="text-label-sm bg-secondary-container px-2 py-0.5 rounded-full">42</span>
+</button>
+<button class="w-full flex items-center justify-between px-md py-sm text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all">
+<span>Transferts</span>
+<span class="text-label-sm">28</span>
+</button>
+<button class="w-full flex items-center justify-between px-md py-sm text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all">
+<span>Sécurité</span>
+<span class="text-label-sm">11</span>
+</button>
+<button class="w-full flex items-center justify-between px-md py-sm text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all">
+<span>Compte</span>
+<span class="text-label-sm">3</span>
+</button>
+</div>
+</div>
+<!-- Export CTA -->
+<button class="w-full flex items-center justify-center gap-sm border border-primary text-primary px-lg py-sm rounded-xl font-label-md hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">download</span>
+                    Exporter le journal (CSV)
+                </button>
+</aside>
+<!-- Activity List -->
+<section class="lg:col-span-9">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-custom overflow-hidden">
+<div class="px-lg py-md border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-primary">Journal d'Audit</h2>
+<div class="flex items-center gap-sm text-on-surface-variant font-label-sm">
+<span class="material-symbols-outlined text-[18px]">info</span>
+                            Conservation des logs : 90 jours
+                        </div>
+</div>
+<div class="p-lg">
+<!-- Timeline Group -->
+<div class="mb-lg">
+<h4 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-md">Aujourd'hui</h4>
+<!-- Item 1: Transfer -->
+<div class="timeline-item flex gap-lg pb-md relative timeline-line">
+<div class="relative z-10">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[14px]">cloud_upload</span>
+</div>
+</div>
+<div class="flex-1 pb-lg border-b border-surface-variant">
+<div class="flex justify-between items-start mb-xs">
+<h5 class="font-headline-sm text-[16px] text-on-surface">Transfert terminé : Mariage - Julie &amp; Thomas</h5>
+<span class="text-label-sm text-on-surface-variant">14:32</span>
+</div>
+<p class="text-on-surface-variant text-body-sm mb-sm">142 fichiers téléchargés avec succès vers le cloud sécurisé.</p>
+<div class="flex gap-sm">
+<span class="bg-surface-container-highest text-on-surface-variant px-sm py-xs rounded flex items-center gap-xs text-[12px]">
+<span class="material-symbols-outlined text-[14px]">sd_storage</span> 2.4 GB
+                                        </span>
+<span class="bg-surface-container-highest text-on-surface-variant px-sm py-xs rounded flex items-center gap-xs text-[12px]">
+<span class="material-symbols-outlined text-[14px]">link</span> Partage privé activé
+                                        </span>
+</div>
+</div>
+</div>
+<!-- Item 2: Login -->
+<div class="timeline-item flex gap-lg pb-md relative timeline-line">
+<div class="relative z-10">
+<div class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[14px]">login</span>
+</div>
+</div>
+<div class="flex-1 pb-lg border-b border-surface-variant">
+<div class="flex justify-between items-start mb-xs">
+<h5 class="font-headline-sm text-[16px] text-on-surface">Connexion réussie</h5>
+<span class="text-label-sm text-on-surface-variant">09:15</span>
+</div>
+<p class="text-on-surface-variant text-body-sm">Depuis Paris, FR (Chrome sur macOS). IP: 192.168.1.XX</p>
+</div>
+</div>
+</div>
+<!-- Timeline Group 2 -->
+<div class="mb-lg">
+<h4 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-md">Hier - 23 Octobre</h4>
+<!-- Item 3: Password Change -->
+<div class="timeline-item flex gap-lg pb-md relative timeline-line">
+<div class="relative z-10">
+<div class="w-6 h-6 rounded-full bg-error-container flex items-center justify-center text-on-error-container">
+<span class="material-symbols-outlined text-[14px]">lock_reset</span>
+</div>
+</div>
+<div class="flex-1 pb-lg border-b border-surface-variant">
+<div class="flex justify-between items-start mb-xs">
+<h5 class="font-headline-sm text-[16px] text-on-surface">Mot de passe modifié</h5>
+<span class="text-label-sm text-on-surface-variant">18:40</span>
+</div>
+<p class="text-on-surface-variant text-body-sm">Le mot de passe de votre compte a été mis à jour avec succès via l'interface web.</p>
+</div>
+</div>
+<!-- Item 4: Gallery Deleted -->
+<div class="timeline-item flex gap-lg pb-md relative timeline-line">
+<div class="relative z-10">
+<div class="w-6 h-6 rounded-full bg-on-surface-variant flex items-center justify-center text-surface">
+<span class="material-symbols-outlined text-[14px]">delete</span>
+</div>
+</div>
+<div class="flex-1 pb-lg border-b border-surface-variant">
+<div class="flex justify-between items-start mb-xs">
+<h5 class="font-headline-sm text-[16px] text-on-surface">Galerie supprimée : Shooting Mode Automne</h5>
+<span class="text-label-sm text-on-surface-variant">11:22</span>
+</div>
+<p class="text-on-surface-variant text-body-sm">La galerie et les fichiers associés ont été déplacés vers la corbeille (rétention 30j).</p>
+</div>
+</div>
+<!-- Item 5: Login Failure -->
+<div class="timeline-item flex gap-lg pb-md relative timeline-line">
+<div class="relative z-10">
+<div class="w-6 h-6 rounded-full bg-error flex items-center justify-center text-on-error">
+<span class="material-symbols-outlined text-[14px]">report</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-xs">
+<h5 class="font-headline-sm text-[16px] text-error font-bold">Échec de connexion détecté</h5>
+<span class="text-label-sm text-on-surface-variant">08:55</span>
+</div>
+<p class="text-on-surface-variant text-body-sm">Tentative infructueuse avec un mot de passe erroné. Origine : Londres, UK.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="px-lg py-md border-t border-outline-variant flex justify-between items-center bg-surface-container-low">
+<span class="text-body-sm text-on-surface-variant">Affichage de 1-5 sur 42 entrées</span>
+<div class="flex gap-xs">
+<button class="p-xs rounded-lg hover:bg-surface-variant disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="px-sm py-xs rounded-lg bg-primary text-on-primary font-label-sm">1</button>
+<button class="px-sm py-xs rounded-lg hover:bg-surface-variant font-label-sm">2</button>
+<button class="px-sm py-xs rounded-lg hover:bg-surface-variant font-label-sm">3</button>
+<button class="p-xs rounded-lg hover:bg-surface-variant">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant py-xl mt-xl">
+<div class="flex flex-col md:flex-row justify-between items-center px-gutter max-w-container-max mx-auto gap-md">
+<div class="flex flex-col md:flex-row items-center gap-md">
+<span class="font-bold text-primary">JB Transfert</span>
+<span class="text-on-tertiary-fixed-variant font-label-sm">© 2024 JB Transfert. All rights reserved.</span>
+</div>
+<nav class="flex gap-lg">
+<a class="text-on-tertiary-fixed-variant font-label-sm hover:text-primary transition-colors" href="#">Confidentialité</a>
+<a class="text-on-tertiary-fixed-variant font-label-sm hover:text-primary transition-colors" href="#">Conditions</a>
+<a class="text-on-tertiary-fixed-variant font-label-sm hover:text-primary transition-colors" href="#">Contact</a>
+</nav>
+</div>
+</footer>
+<script>
+        // Micro-interaction for timeline items
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.querySelector('.material-symbols-outlined').style.transform = 'scale(1.2)';
+                item.querySelector('.material-symbols-outlined').style.transition = 'transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.querySelector('.material-symbols-outlined').style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

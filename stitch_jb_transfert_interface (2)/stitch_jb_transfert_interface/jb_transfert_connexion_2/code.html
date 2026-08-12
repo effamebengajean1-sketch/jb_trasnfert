@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Connexion | JB Transfert</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#191c21",
+                    "on-surface": "#191c21",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#0b4f9e",
+                    "secondary-container": "#5fa6fd",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed-dim": "#abc7ff",
+                    "on-surface-variant": "#424751",
+                    "surface-container-low": "#f3f3fa",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#abc7ff",
+                    "surface": "#f9f9ff",
+                    "on-tertiary-fixed-variant": "#3f484f",
+                    "surface-container-highest": "#e2e2e9",
+                    "error": "#ba1a1a",
+                    "secondary": "#005fac",
+                    "surface-tint": "#245dad",
+                    "tertiary-fixed": "#dbe4ec",
+                    "on-primary-fixed-variant": "#00458f",
+                    "on-primary-container": "#a6c4ff",
+                    "secondary-fixed": "#d4e3ff",
+                    "tertiary-container": "#495259",
+                    "on-secondary-fixed-variant": "#004884",
+                    "primary": "#003877",
+                    "surface-container": "#ededf5",
+                    "surface-variant": "#e2e2e9",
+                    "on-secondary-container": "#003a6d",
+                    "outline-variant": "#c2c6d3",
+                    "surface-bright": "#f9f9ff",
+                    "secondary-fixed-dim": "#a4c9ff",
+                    "primary-fixed": "#d7e3ff",
+                    "outline": "#737783",
+                    "tertiary-fixed-dim": "#bec8d0",
+                    "on-tertiary-container": "#bcc5cd",
+                    "error-container": "#ffdad6",
+                    "background": "#f9f9ff",
+                    "on-tertiary-fixed": "#141d23",
+                    "surface-dim": "#d9d9e1",
+                    "inverse-on-surface": "#f0f0f8",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#001c39",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#e7e8ef",
+                    "on-primary-fixed": "#001b3f",
+                    "on-tertiary": "#ffffff",
+                    "tertiary": "#323b42",
+                    "inverse-surface": "#2e3036"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "container-max": "1200px",
+                    "base": "4px",
+                    "xs": "4px",
+                    "xl": "48px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Sora"],
+                    "headline-xl": ["Sora"],
+                    "headline-md": ["Sora"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Sora"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #EAF3FC;
+            font-family: 'Inter', sans-serif;
+        }
+        .login-card {
+            box-shadow: 0px 4px 20px rgba(15, 27, 45, 0.08);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .input-focus-ring:focus {
+            outline: none;
+            border-color: #0B4F9E;
+            box-shadow: 0 0 0 2px rgba(11, 79, 158, 0.15);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col">
+<!-- TopAppBar Fragment (Simplified for Login) -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest shadow-[0px_4px_20px_rgba(15,27,45,0.08)] h-20 flex items-center">
+<div class="flex justify-between items-center w-full px-gutter max-w-container-max mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="cloud_upload">cloud_upload</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">JB Transfert</h1>
+</div>
+<a class="font-label-md text-label-md text-primary font-semibold hover:opacity-80 transition-all" href="#">
+                Besoin d'aide ?
+            </a>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-grow flex items-center justify-center pt-20 px-margin-mobile md:px-gutter">
+<div class="w-full max-w-[440px] animate-in fade-in slide-in-from-bottom-4 duration-700">
+<!-- Login Card -->
+<div class="bg-surface-container-lowest login-card rounded-xl p-lg md:p-xl flex flex-col gap-lg">
+<!-- Card Header -->
+<div class="text-center md:text-left">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-xs">Bon retour</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Connectez-vous pour gérer vos partages sécurisés.</p>
+</div>
+<!-- Form -->
+<form action="#" class="flex flex-col gap-md" method="POST">
+<!-- Email Field -->
+<div class="flex flex-col gap-base">
+<label class="font-label-md text-label-md text-on-surface" for="email">Email professionnel</label>
+<div class="relative">
+<input class="w-full px-md py-3 rounded-lg border border-outline-variant bg-white text-body-md font-body-md input-focus-ring transition-all placeholder:text-outline" id="email" name="email" placeholder="nom@entreprise.fr" required="" type="email"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline-variant" data-icon="mail">mail</span>
+</div>
+</div>
+<!-- Password Field -->
+<div class="flex flex-col gap-base">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface" for="password">Mot de passe</label>
+<a class="font-label-sm text-label-sm text-secondary hover:underline" href="#">Oublié ?</a>
+</div>
+<div class="relative">
+<input class="w-full px-md py-3 rounded-lg border border-outline-variant bg-white text-body-md font-body-md input-focus-ring transition-all placeholder:text-outline" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline-variant hover:text-on-surface-variant transition-colors" onclick="togglePassword()" type="button">
+<span class="material-symbols-outlined" data-icon="visibility" id="password-icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="mt-md w-full bg-[#0B4F9E] hover:bg-[#2D7DD2] text-on-primary font-label-md text-label-md py-3.5 rounded-lg font-semibold shadow-sm transition-all active:scale-[0.98]" type="submit">
+                        Se connecter
+                    </button>
+</form>
+<!-- Footer Link -->
+<div class="text-center pt-md border-t border-outline-variant">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        Pas encore de compte ? 
+                        <a class="text-secondary font-semibold hover:underline" href="#">Créer un compte</a>
+</p>
+</div>
+</div>
+<!-- Security Assurance -->
+<div class="mt-lg flex items-center justify-center gap-sm text-on-surface-variant opacity-60">
+<span class="material-symbols-outlined text-sm" data-icon="lock">lock</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Chiffrement AES-256 certifié</span>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl px-gutter bg-surface-container border-t border-outline-variant mt-auto">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="flex flex-col items-center md:items-start">
+<span class="font-headline-sm text-headline-sm text-primary mb-xs">JB Transfert</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 JB Transfert. Tous droits réservés.</p>
+</div>
+<div class="flex gap-lg">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Conditions d'utilisation</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Confidentialité</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Aide</a>
+</div>
+</div>
+</footer>
+<script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const icon = document.getElementById('password-icon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.textContent = 'visibility_off';
+            } else {
+                passwordInput.type = 'password';
+                icon.textContent = 'visibility';
+            }
+        }
+
+        // Simple animation trigger for the card
+        document.addEventListener('DOMContentLoaded', () => {
+            const card = document.querySelector('.login-card');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                card.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body></html>

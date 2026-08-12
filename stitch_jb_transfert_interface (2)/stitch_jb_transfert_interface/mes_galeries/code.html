@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JB Transfert - Mes Galeries</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Sora:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#d7e3ff",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e7e8ef",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#bcc5cd",
+                    "primary-container": "#0b4f9e",
+                    "on-primary-container": "#a6c4ff",
+                    "surface-container-low": "#f3f3fa",
+                    "secondary-fixed": "#d4e3ff",
+                    "on-secondary-fixed-variant": "#004884",
+                    "background": "#f9f9ff",
+                    "on-surface": "#191c21",
+                    "tertiary": "#323b42",
+                    "surface-container": "#ededf5",
+                    "outline-variant": "#c2c6d3",
+                    "on-background": "#191c21",
+                    "tertiary-fixed": "#dbe4ec",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#abc7ff",
+                    "on-primary-fixed-variant": "#00458f",
+                    "on-primary-fixed": "#001b3f",
+                    "surface-variant": "#e2e2e9",
+                    "primary": "#003877",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#003a6d",
+                    "outline": "#737783",
+                    "on-tertiary-fixed-variant": "#3f484f",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#001c39",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#f0f0f8",
+                    "surface-tint": "#245dad",
+                    "surface": "#f9f9ff",
+                    "tertiary-container": "#495259",
+                    "surface-bright": "#f9f9ff",
+                    "secondary": "#005fac",
+                    "primary-fixed-dim": "#abc7ff",
+                    "secondary-fixed-dim": "#a4c9ff",
+                    "inverse-surface": "#2e3036",
+                    "tertiary-fixed-dim": "#bec8d0",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#141d23",
+                    "surface-container-highest": "#e2e2e9",
+                    "on-surface-variant": "#424751",
+                    "secondary-container": "#5fa6fd",
+                    "surface-dim": "#d9d9e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "gutter": "24px",
+                    "container-max": "1200px",
+                    "md": "16px",
+                    "base": "4px",
+                    "xs": "4px",
+                    "margin-mobile": "16px",
+                    "xl": "48px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Sora"],
+                    "body-lg": ["Inter"],
+                    "headline-sm": ["Sora"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Sora"],
+                    "headline-xl": ["Sora"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #FFFFFF;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-shadow {
+            box-shadow: 0px 4px 20px rgba(15, 27, 45, 0.08);
+        }
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scroll-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest shadow-[0px_4px_20px_rgba(15,27,45,0.08)]">
+<div class="flex justify-between items-center w-full px-gutter max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-[32px]">cloud_upload</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">JB Transfert</h1>
+</div>
+<!-- Desktop Navigation -->
+<nav class="hidden md:flex items-center space-x-lg h-full">
+<a class="h-full flex items-center px-sm text-primary border-b-2 border-primary font-label-md text-label-md" href="#">Galeries</a>
+<a class="h-full flex items-center px-sm text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-md text-label-md" href="#">Partages</a>
+<a class="h-full flex items-center px-sm text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-md text-label-md" href="#">Aide</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="hidden md:flex items-center justify-center gap-sm bg-[#0B4F9E] hover:bg-[#2D7DD2] text-white px-lg py-sm rounded-xl font-body-md font-medium transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                    Nouvelle galerie
+                </button>
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed cursor-pointer hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">person</span>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 md:pb-12 min-h-screen">
+<div class="max-w-container-max mx-auto px-gutter">
+<!-- Page Header Content -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-xl gap-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-base">Mes Galeries</h2>
+<p class="text-on-surface-variant font-body-md">Gérez et organisez vos transferts de photos haute définition.</p>
+</div>
+<!-- Mobile Only FAB context -->
+<button class="md:hidden flex items-center justify-center gap-sm bg-[#0B4F9E] text-white px-lg py-md rounded-full font-body-md font-medium shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add</span>
+                    Nouvelle galerie
+                </button>
+</div>
+<!-- Dashboard Stats / Filters (High-end UI detail) -->
+<div class="flex items-center gap-sm mb-lg overflow-x-auto scroll-hide pb-2">
+<button class="px-lg py-sm bg-primary-container text-white rounded-full font-label-md text-label-md flex-shrink-0">Toutes</button>
+<button class="px-lg py-sm bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high rounded-full font-label-md text-label-md flex-shrink-0 transition-colors">Récentes</button>
+<button class="px-lg py-sm bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high rounded-full font-label-md text-label-md flex-shrink-0 transition-colors">Partagées</button>
+<button class="px-lg py-sm bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high rounded-full font-label-md text-label-md flex-shrink-0 transition-colors">Archives</button>
+</div>
+<!-- Gallery Bento/Grid Layout -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
+<!-- Gallery Card 1 -->
+<div class="group bg-white rounded-xl overflow-hidden custom-shadow hover:translate-y-[-4px] transition-all duration-300 cursor-pointer">
+<div class="aspect-square w-full relative overflow-hidden bg-surface-container-low">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" data-alt="A professional high-resolution photography showcase of a summer fashion shoot. The lighting is bright and warm, featuring a model in elegant linen clothing against a minimalist Mediterranean architectural background. The overall tone is corporate yet artistically refined, dominated by soft blues and whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo0FjQ6EiQN4HVpvvTzC3pEi1vuOLb39OJE3ZfCArFS6ji3g6aLiKYy3FZRE3zTbo0HQxZA-O6ZSOX-gqGwd_nW6BCZjUrSDdCjRTr7eYwQIqkCCn0ndclfulNHrQ7dP0hT0aqsrA_Y7JJSqdBwRmVfQtvkUHYV1GO--uWdFMSLzqtaBRn8mElkpOZelrcViR1Ne37M4RfUuutIBk75gNF_WhQzU0wu_0hf5NFEwsr1i77OAgzZuM3QA"/>
+<div class="absolute top-sm right-sm bg-white/90 backdrop-blur-sm px-sm py-xs rounded-lg text-primary font-label-sm text-label-sm shadow-sm">
+                            42 photos
+                        </div>
+</div>
+<div class="p-md">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-xs group-hover:text-secondary transition-colors">Shooting Été 2024</h3>
+<p class="text-on-surface-variant font-label-sm text-label-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                            Créé le 12 Juin 2024
+                        </p>
+</div>
+</div>
+<!-- Gallery Card 2 -->
+<div class="group bg-white rounded-xl overflow-hidden custom-shadow hover:translate-y-[-4px] transition-all duration-300 cursor-pointer">
+<div class="aspect-square w-full relative overflow-hidden bg-surface-container-low">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" data-alt="A crisp, clean corporate event photography thumbnail showing a modern conference room with glass walls and blue-tinted professional lighting. A diverse group of people are engaged in a workshop, with clear focus on high-tech devices and collaboration. The aesthetic is clean, sharp, and highly trustworthy, aligning with a professional file transfer utility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu8qXq3asL1_nJ9mDn3RkDAcreiwCgnEzXUWL5ViYuSPO0et5RWzcpewhIHNkeU1GoaXY-8g7vdBZyGtXQ1Iya-CMPDY4b6SvWEQS5OMiaHo34zBkgsuk9zAR9wbbHxHCoZgANcn4Tadi8qFDXdXP4k33-T0TBKEZGixrKkM59EeLQJrXHXcGXMBtGJy2GEIgBdZVBdJV8kWBSmffEFD1lGWBT3_bpg6fD_u2cAt06g_tOMKFWBqBgdA"/>
+<div class="absolute top-sm right-sm bg-white/90 backdrop-blur-sm px-sm py-xs rounded-lg text-primary font-label-sm text-label-sm shadow-sm">
+                            128 photos
+                        </div>
+</div>
+<div class="p-md">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-xs group-hover:text-secondary transition-colors">Séminaire Lyon</h3>
+<p class="text-on-surface-variant font-label-sm text-label-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                            Créé le 5 Mai 2024
+                        </p>
+</div>
+</div>
+<!-- Gallery Card 3 -->
+<div class="group bg-white rounded-xl overflow-hidden custom-shadow hover:translate-y-[-4px] transition-all duration-300 cursor-pointer">
+<div class="aspect-square w-full relative overflow-hidden bg-surface-container-low">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" data-alt="Minimalist architectural photography showcasing a modern office building exterior with reflective blue glass and sharp geometric lines. The sky is a clear pale blue, creating a serene and professional atmosphere. The composition is balanced and elegant, echoing the corporate modern style of the JB Transfert brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHWpOQAf-d7k9W6iAuqgsDrdZD2wq3_cw_Jo-XhHbCDowduu8WNovYfJQ6vj40O2PAmhVMt04KOGKqtVv9UuvgvY5PNdAP2D_6ZUpOneVZMwxDUxht4OkVv5Xk5eF_F0--ySL4GMHgJMSznFh9b8vjN7XLzYlDztOpdJi9iBnUjOqdQQ2Uf7lOCVSuXNJJucYcnl_lTdq2sNfD5pbyQWD0eq2hN-WEUDkO_yR-kcyYPWvvoJx5-YZjYA"/>
+<div class="absolute top-sm right-sm bg-white/90 backdrop-blur-sm px-sm py-xs rounded-lg text-primary font-label-sm text-label-sm shadow-sm">
+                            15 photos
+                        </div>
+</div>
+<div class="p-md">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-xs group-hover:text-secondary transition-colors">Architecture HQ</h3>
+<p class="text-on-surface-variant font-label-sm text-label-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                            Créé le 28 Avril 2024
+                        </p>
+</div>
+</div>
+<!-- Gallery Card 4 -->
+<div class="group bg-white rounded-xl overflow-hidden custom-shadow hover:translate-y-[-4px] transition-all duration-300 cursor-pointer">
+<div class="aspect-square w-full relative overflow-hidden bg-surface-container-low">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" data-alt="Close-up artistic product photography of high-end tech gadgets on a white textured surface. Soft blue ambient lighting accents the metallic edges of the devices. The image feels premium and technical, conveying speed and reliability through clean lines and sharp focus, consistent with a high-trust digital service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC6UTUwPNlwJCeDGx0GTsCTrFswEIdyE1KKq1N2-k6_QEAdP0P6fjZ12T0FwFy374MfpiEiQYCOJL71zXUMbRxXo-Zl2z59ickuroFrEhsQQjBrgWIHC5GnP46BQQhgliyFEJEoTL8_34yJuA8tIZlIGus48SmmE6_4Ywa9LgMS8oDaSU0lA2h3NjTa16d8FQ803gm9dfiiogKUSGKvnaAvIwUrVeQCJLva78NtfqgdmGalT8eXIoL0g"/>
+<div class="absolute top-sm right-sm bg-white/90 backdrop-blur-sm px-sm py-xs rounded-lg text-primary font-label-sm text-label-sm shadow-sm">
+                            84 photos
+                        </div>
+</div>
+<div class="p-md">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-xs group-hover:text-secondary transition-colors">Packshot Tech v2</h3>
+<p class="text-on-surface-variant font-label-sm text-label-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                            Créé le 15 Avril 2024
+                        </p>
+</div>
+</div>
+<!-- Gallery Card 5 -->
+<div class="group bg-white rounded-xl overflow-hidden custom-shadow hover:translate-y-[-4px] transition-all duration-300 cursor-pointer">
+<div class="aspect-square w-full relative overflow-hidden bg-surface-container-low">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" data-alt="A beautiful lifestyle photography session in an airy, sun-drenched studio with white walls and light wood floors. Professional studio equipment is visible but subtle. The mood is creative and calm, with a palette of soft neutrals and cool blues that reinforce the professional, modern identity of the user's gallery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbKB_TQV8AAKEK77ApL9m8L5Ber-rjETwo3kfL4OAm5Iw5ieMSRELmCD6y1hzRWyABO-t1iuHImHMy8frt7tWzcJ86mIslur6Cjier6Fxe87yn9ri-wsHMw7kICpZvswpN-qPtjW2kmedrlgdjuCcHA8kC9AVoH7hmk0USoPPtSjmaR397iQM9WMUq_NbSGfKpfhpxmGK1k9XJoX0kOlkiukSkQR1qZLAOBKW2lZe5agev_F1q7O058Q"/>
+<div class="absolute top-sm right-sm bg-white/90 backdrop-blur-sm px-sm py-xs rounded-lg text-primary font-label-sm text-label-sm shadow-sm">
+                            212 photos
+                        </div>
+</div>
+<div class="p-md">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-xs group-hover:text-secondary transition-colors">Studio Session B</h3>
+<p class="text-on-surface-variant font-label-sm text-label-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                            Créé le 2 Mars 2024
+                        </p>
+</div>
+</div>
+<!-- Empty State/Add Placeholder -->
+<div class="group flex flex-col items-center justify-center border-2 border-dashed border-outline-variant bg-surface-container-lowest rounded-xl aspect-square hover:border-primary hover:bg-surface-container-low transition-all duration-300 cursor-pointer p-lg text-center">
+<div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-primary mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px]">add_photo_alternate</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface-variant group-hover:text-primary transition-colors">Nouvelle galerie</p>
+<p class="font-body-sm text-body-sm text-outline mt-xs">Créez un nouvel album sécurisé</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Desktop Only) -->
+<footer class="hidden md:block w-full py-xl px-gutter bg-surface-container border-t border-outline-variant">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="flex flex-col items-center md:items-start gap-xs">
+<p class="font-headline-sm text-headline-sm text-primary">JB Transfert</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 JB Transfert. Tous droits réservés.</p>
+</div>
+<div class="flex gap-lg">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Conditions d'utilisation</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Confidentialité</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Aide</a>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-4 bg-surface-container-lowest border-t border-outline-variant shadow-[0px_-4px_20px_rgba(15,27,45,0.08)] md:hidden">
+<a class="flex flex-col items-center justify-center text-primary font-bold active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="font-label-sm text-label-sm">Galeries</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined">share</span>
+<span class="font-label-sm text-label-sm">Partages</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profil</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction: Scale down on click for interactive elements
+        document.querySelectorAll('.group, button, a').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.style.transform = (el.classList.contains('group')) ? 'translateY(-4px) scale(0.98)' : 'scale(0.95)';
+            });
+            el.addEventListener('mouseup', () => {
+                el.style.transform = '';
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = '';
+            });
+        });
+
+        // Simple scroll observer for sticky header transparency/shadow logic
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-md');
+                header.classList.remove('shadow-[0px_4px_20px_rgba(15,27,45,0.08)]');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('shadow-[0px_4px_20px_rgba(15,27,45,0.08)]');
+            }
+        });
+    </script>
+</body></html>

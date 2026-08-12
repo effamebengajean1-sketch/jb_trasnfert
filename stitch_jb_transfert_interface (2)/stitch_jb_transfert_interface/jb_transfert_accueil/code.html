@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JB Transfert | Partagez vos images en qualité originale</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Sora:wght@100..900&display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#d7e3ff",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e7e8ef",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#bcc5cd",
+                    "primary-container": "#0b4f9e",
+                    "on-primary-container": "#a6c4ff",
+                    "surface-container-low": "#f3f3fa",
+                    "secondary-fixed": "#d4e3ff",
+                    "on-secondary-fixed-variant": "#004884",
+                    "background": "#f9f9ff",
+                    "on-surface": "#191c21",
+                    "tertiary": "#323b42",
+                    "surface-container": "#ededf5",
+                    "outline-variant": "#c2c6d3",
+                    "on-background": "#191c21",
+                    "tertiary-fixed": "#dbe4ec",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#abc7ff",
+                    "on-primary-fixed-variant": "#00458f",
+                    "on-primary-fixed": "#001b3f",
+                    "surface-variant": "#e2e2e9",
+                    "primary": "#003877",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#003a6d",
+                    "outline": "#737783",
+                    "on-tertiary-fixed-variant": "#3f484f",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#001c39",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#f0f0f8",
+                    "surface-tint": "#245dad",
+                    "surface": "#f9f9ff",
+                    "tertiary-container": "#495259",
+                    "surface-bright": "#f9f9ff",
+                    "secondary": "#005fac",
+                    "primary-fixed-dim": "#abc7ff",
+                    "secondary-fixed-dim": "#a4c9ff",
+                    "inverse-surface": "#2e3036",
+                    "tertiary-fixed-dim": "#bec8d0",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#141d23",
+                    "surface-container-highest": "#e2e2e9",
+                    "on-surface-variant": "#424751",
+                    "secondary-container": "#5fa6fd",
+                    "surface-dim": "#d9d9e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "gutter": "24px",
+                    "container-max": "1200px",
+                    "md": "16px",
+                    "base": "4px",
+                    "xs": "4px",
+                    "margin-mobile": "16px",
+                    "xl": "48px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Sora"],
+                    "body-lg": ["Inter"],
+                    "headline-sm": ["Sora"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Sora"],
+                    "headline-xl": ["Sora"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .shadow-trust {
+            box-shadow: 0px 4px 20px rgba(15, 27, 45, 0.08);
+        }
+
+        .hero-gradient {
+            background-color: #f9f9ff;
+            background-image: radial-gradient(at 100% 0%, #EAF3FC 0%, transparent 50%), 
+                              radial-gradient(at 0% 100%, #EAF3FC 0%, transparent 50%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest shadow-[0px_4px_20px_rgba(15,27,45,0.08)]">
+<div class="flex justify-between items-center w-full px-gutter max-w-container-max mx-auto h-20">
+<!-- Brand Logo -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">cloud_upload</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">JB Transfert</h1>
+</div>
+<!-- Desktop Navigation -->
+<nav class="hidden md:flex items-center space-x-lg">
+<a class="text-on-surface-variant font-label-md hover:bg-surface-container-low transition-colors px-md py-sm rounded-lg" href="#">Fonctionnalités</a>
+<a class="text-on-surface-variant font-label-md hover:bg-surface-container-low transition-colors px-md py-sm rounded-lg" href="#">Tarifs</a>
+<a class="text-on-surface-variant font-label-md hover:bg-surface-container-low transition-colors px-md py-sm rounded-lg" href="#">Aide</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-md">
+<button class="hidden sm:block px-lg py-sm border border-primary text-primary font-label-md rounded-full hover:bg-surface-container-low transition-all active:scale-95">Se connecter</button>
+<button class="px-lg py-sm bg-primary-container text-white font-label-md rounded-full shadow-md hover:bg-primary transition-all active:scale-95">Créer un compte</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="hero-gradient relative py-xl md:py-32 overflow-hidden">
+<div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 lg:grid-cols-2 gap-xl items-center">
+<!-- Hero Text -->
+<div class="z-10">
+<div class="inline-flex items-center gap-2 px-sm py-1 bg-primary-fixed text-on-primary-fixed-variant rounded-full mb-lg font-label-sm">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+                        Qualité originale garantie
+                    </div>
+<h2 class="font-headline-xl text-headline-xl text-primary mb-md tracking-tight">
+                        Partagez vos images en qualité originale.
+                    </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-xl max-w-lg">
+                        La plateforme sécurisée pour les photographes et créateurs. Transférez vos fichiers haute résolution sans compression, sans compromis.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-md">
+<div class="flex-1 bg-white border border-outline-variant rounded-full flex items-center px-lg py-md shadow-sm focus-within:border-primary transition-all">
+<span class="material-symbols-outlined text-outline mr-sm">mail</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-body-md" placeholder="votre@email.com" type="text"/>
+</div>
+<button class="bg-primary-container text-white px-xl py-md rounded-full font-label-md hover:bg-primary shadow-lg transition-all">
+                            Commencer gratuitement
+                        </button>
+</div>
+<p class="mt-md font-label-sm text-outline">Aucune carte de crédit requise • 2 Go gratuits</p>
+</div>
+<!-- Hero Visual: Photo Gallery Grid Preview -->
+<div class="relative">
+<div class="grid grid-cols-6 grid-rows-6 gap-sm h-[500px] md:h-[600px]">
+<!-- Bento Style Grid -->
+<div class="col-span-3 row-span-4 rounded-xl overflow-hidden shadow-trust group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A professional high-resolution photography shot of a serene mountain landscape during the golden hour, showing crisp details, vibrant warm colors, and a clean minimalist aesthetic. The lighting is soft and natural, emphasizing the professional quality of the JB Transfert service in a light mode UI environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCzIIe21GZRQnzHUYS3PqO5ZW9J8L7NaThzZSaYpPGTDQknPUKT8F2_G9uAtxI-2btKH8KGCHr4ReS9XMpkNHHvFZ4_RdGwlrAw9TMG6TJbKq-yOHMAjZasmGGALfhKBV2aQBGqeWqIco8JKNht6iESX9QMdg68jOixNXVQwTNkk1JwkYXyZ6a7TVK5HkKog1RNN4bvrTGYRyhLeExNiO3M5vg92HNAdWHrO6Gs9IJoJTLWkeZD_zo7A"/>
+</div>
+<div class="col-span-3 row-span-2 rounded-xl overflow-hidden shadow-trust group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Close-up macro photography of a crystal-clear water droplet on a bright green leaf, demonstrating extreme detail and sharpness. The background is a soft bokeh of a modern office space, fitting the corporate modern aesthetic with clean white and blue tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0RUfVv0cCL-wRzwTn5JT7Pogb1WmNCyOFV11P-OnJ5--pG0y4V-lRj7DDzZg8AygnWHQIBYpqHXe8i8TBrr4L_JdPpR45F64JZefnvSJcQnbMKvOlx_yraWVUIiXShCvQh8AiRusOImA1cw0vaznyfWx1JKpWtcUKBnzV3ylSyy_pDoa1M62bQRG8LC0G21TgcJa6vY_wMKa_9jY9JKqUJd9yIviyfiBCX8Bus80ZZc1-VEad_j_tZQ"/>
+</div>
+<div class="col-span-2 row-span-2 rounded-xl overflow-hidden shadow-trust group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="An architectural shot of a modern minimalist building with sharp white lines against a deep blue sky. The image is bright and clean, representing the high-trust and technical precision of the photo sharing platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkxWJqH6JXrxWPbmJuWCxMFSkJRqifQ1QiygHUL8vVD-wq17IgRDxv-P2RCMSvSidG9aoWQAT0sOqUAgkfBNuTem3f1UQ54jb9NMrThqciz0D3W_35UiZRL79ShMSgOjcBeNhkGp5HabfnQlvuqnm5OM82QhZwD9R6GHTC3m5vu9uEpNsQYH70BX5qNPvUY0__C70P7DvgKMfOzg9eY4DrDam5RuUF5Gx9DOk_5rVi_BTikRfzYGjDew"/>
+</div>
+<div class="col-span-1 row-span-2 rounded-xl bg-primary-container flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-4xl">add</span>
+</div>
+<div class="col-span-3 row-span-2 rounded-xl overflow-hidden shadow-trust group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A lifestyle photo of a professional designer working at a clean, white desk with a high-end monitor showing a photo editing software. The room is filled with soft natural light, maintaining a professional and reliable tone for the branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaWrGCyEmK2Ga8qfvIEzBlA1DNQVKG4cOushMmjtjvdwyxOy0NrUhKlc7sMJ3LFFnlt6RNXwdE-0f0GZUubjhgNyIddDkPcItvwFbKJ9OXRgMXCXMLv4IBEFxVjygi7WtYZX2EbqkJW_fXTGhSRAPsMW6cQGc9qEi1jFcwMKYlFwdIo6Z6-LTsLAxvKSPe77ps1ztAeRZt5mhAybLnAI3s1rOi_TYS7llwfbnx9YfBOfbKIAHfrUg85g"/>
+</div>
+</div>
+<!-- Floating UI Element -->
+<div class="absolute -bottom-6 -left-6 glass-card p-md rounded-xl shadow-lg flex items-center gap-md max-w-xs animate-bounce-slow">
+<div class="w-12 h-12 bg-primary-fixed rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">download_done</span>
+</div>
+<div>
+<p class="font-label-md text-primary font-bold">Transfert terminé</p>
+<p class="font-label-sm text-on-surface-variant">42 images (1.2 Go) partagées</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Section -->
+<section class="py-xl bg-white border-y border-outline-variant/30">
+<div class="max-w-container-max mx-auto px-gutter">
+<p class="text-center font-label-md text-outline mb-lg uppercase tracking-widest">Utilisé par les leaders de la création</p>
+<div class="flex flex-wrap justify-center items-center gap-xl opacity-50 grayscale hover:grayscale-0 transition-all">
+<span class="font-headline-sm font-bold text-on-surface-variant">LUMINA</span>
+<span class="font-headline-sm font-bold text-on-surface-variant">PIXEL ART</span>
+<span class="font-headline-sm font-bold text-on-surface-variant">STUDIO 24</span>
+<span class="font-headline-sm font-bold text-on-surface-variant">VISTA</span>
+<span class="font-headline-sm font-bold text-on-surface-variant">CREA+</span>
+</div>
+</div>
+</section>
+<!-- Features Section -->
+<section class="py-xl bg-surface">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="text-center mb-xl">
+<h3 class="font-headline-lg text-headline-lg text-primary mb-sm">Pensé pour votre flux de travail</h3>
+<p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">Tout ce dont vous avez besoin pour envoyer, recevoir et gérer vos photos haute définition en toute sécurité.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Feature 1 -->
+<div class="bg-white p-lg rounded-xl shadow-trust border border-transparent hover:border-primary-fixed transition-all group">
+<div class="w-12 h-12 bg-surface-container-low rounded-lg flex items-center justify-center mb-md group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-primary">photo_library</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm mb-sm">Galeries de prévisualisation</h4>
+<p class="font-body-sm text-on-surface-variant">Vos clients peuvent visualiser les photos directement dans leur navigateur avant de les télécharger.</p>
+</div>
+<!-- Feature 2 -->
+<div class="bg-white p-lg rounded-xl shadow-trust border border-transparent hover:border-primary-fixed transition-all group">
+<div class="w-12 h-12 bg-surface-container-low rounded-lg flex items-center justify-center mb-md group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-primary">lock</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm mb-sm">Sécurité de niveau pro</h4>
+<p class="font-body-sm text-on-surface-variant">Chiffrement de bout en bout et protection par mot de passe pour tous vos partages sensibles.</p>
+</div>
+<!-- Feature 3 -->
+<div class="bg-white p-lg rounded-xl shadow-trust border border-transparent hover:border-primary-fixed transition-all group">
+<div class="w-12 h-12 bg-surface-container-low rounded-lg flex items-center justify-center mb-md group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-primary">speed</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm mb-sm">Rapidité fulgurante</h4>
+<p class="font-body-sm text-on-surface-variant">Optimisé pour les fichiers RAW et les bibliothèques lourdes. Ne perdez plus de temps à attendre.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Uploader Simulation Section -->
+<section class="py-xl">
+<div class="max-w-4xl mx-auto px-gutter">
+<div class="bg-white rounded-2xl shadow-trust overflow-hidden border border-outline-variant">
+<div class="p-lg bg-surface-container-low flex justify-between items-center border-b border-outline-variant">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">upload_file</span>
+<span class="font-label-md text-primary font-bold">Nouveau Transfert</span>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">settings</button>
+</div>
+<div class="p-xl text-center">
+<div class="border-2 border-dashed border-primary-fixed rounded-xl p-xl mb-lg hover:bg-surface-container-low transition-all cursor-pointer group">
+<span class="material-symbols-outlined text-primary text-5xl mb-md group-hover:scale-110 transition-transform">cloud_upload</span>
+<h5 class="font-headline-sm mb-sm">Glissez-déposez vos images ici</h5>
+<p class="font-body-sm text-on-surface-variant mb-md">ou cliquez pour parcourir vos fichiers</p>
+<button class="bg-primary text-white px-lg py-sm rounded-full font-label-md">Sélectionner des fichiers</button>
+</div>
+<!-- File Chip Samples -->
+<div class="flex flex-wrap justify-center gap-sm">
+<div class="flex items-center gap-xs px-md py-xs bg-surface-container-high rounded-full font-label-sm text-on-surface-variant">
+<span>DSC_0981.RAW</span>
+<span class="material-symbols-outlined text-sm">close</span>
+</div>
+<div class="flex items-center gap-xs px-md py-xs bg-surface-container-high rounded-full font-label-sm text-on-surface-variant">
+<span>Portfolio_Finale.jpg</span>
+<span class="material-symbols-outlined text-sm">close</span>
+</div>
+<div class="flex items-center gap-xs px-md py-xs bg-surface-container-high rounded-full font-label-sm text-on-surface-variant">
+<span>+ 12 fichiers</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container border-t border-outline-variant mt-xl">
+<div class="w-full py-xl px-gutter flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto">
+<div class="mb-lg md:mb-0 text-center md:text-left">
+<div class="flex items-center gap-2 justify-center md:justify-start mb-sm">
+<span class="material-symbols-outlined text-primary text-2xl">cloud_upload</span>
+<h2 class="font-headline-sm text-headline-sm text-primary">JB Transfert</h2>
+</div>
+<p class="font-body-sm text-on-surface-variant max-w-xs">La solution de partage d'images préférée des professionnels de l'image.</p>
+</div>
+<div class="flex flex-col md:flex-row gap-lg md:gap-xl items-center">
+<nav class="flex gap-lg">
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Conditions d'utilisation</a>
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Confidentialité</a>
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Aide</a>
+</nav>
+<div class="flex gap-md">
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-white text-primary shadow-sm hover:scale-110 transition-transform" href="#">
+<span class="material-symbols-outlined text-sm">language</span>
+</a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-white text-primary shadow-sm hover:scale-110 transition-transform" href="#">
+<span class="material-symbols-outlined text-sm">share</span>
+</a>
+</div>
+</div>
+</div>
+<div class="w-full py-md border-t border-outline-variant/30 text-center">
+<p class="font-label-sm text-outline">© 2024 JB Transfert. Tous droits réservés.</p>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-4 bg-white md:hidden border-t border-outline-variant shadow-[0px_-4px_20px_rgba(15,27,45,0.08)]">
+<a class="flex flex-col items-center justify-center text-primary font-bold" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label-sm">Galeries</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">share</span>
+<span class="font-label-sm">Partages</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm">Profil</span>
+</a>
+</nav>
+<script>
+        // Simple Micro-interactions
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add any scroll animations or interactive state logic here
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.classList.add('scale-95');
+                    setTimeout(() => btn.classList.remove('scale-95'), 100);
+                });
+            });
+        });
+    </script>
+</body></html>

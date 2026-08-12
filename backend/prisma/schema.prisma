@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Utilisateur {
+  id                String    @id @default(cuid())
+  email             String    @unique
+  motDePasseHash    String
+  nom               String
+  role              Role      @default(USER)
+  dateCreation      DateTime  @default(now())
+  galeries          Galerie[]
+}
+
+model Galerie {
+  id              String    @id @default(cuid())
+  titre           String
+  slug            String    @unique
+  dateCreation    DateTime  @default(now())
+  utilisateur     Utilisateur @relation(fields: [utilisateurId], references: [id], onDelete: Cascade)
+  utilisateurId   String
+  photos          Photo[]
+}
+
+model Photo {
+  id              String    @id @default(cuid())
+  nomFichier      String
+  cheminFichier   String
+  tailleOctets    Int
+  formatMime      String
+  dateUpload      DateTime  @default(now())
+  galerie         Galerie   @relation(fields: [galerieId], references: [id], onDelete: Cascade)
+  galerieId       String
+}

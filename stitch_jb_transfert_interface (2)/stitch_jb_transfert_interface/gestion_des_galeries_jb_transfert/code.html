@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gestion des Galeries - JB Transfert</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#d4e3ff",
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#001c39",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#bec8d0",
+                    "tertiary-container": "#495259",
+                    "surface-container": "#ededf5",
+                    "surface-variant": "#e2e2e9",
+                    "secondary-fixed-dim": "#a4c9ff",
+                    "background": "#f9f9ff",
+                    "tertiary": "#323b42",
+                    "surface-container-low": "#f3f3fa",
+                    "inverse-primary": "#abc7ff",
+                    "surface-tint": "#245dad",
+                    "on-primary-container": "#a6c4ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#001b3f",
+                    "inverse-on-surface": "#f0f0f8",
+                    "surface-container-highest": "#e2e2e9",
+                    "on-background": "#191c21",
+                    "on-primary-fixed-variant": "#00458f",
+                    "surface-bright": "#f9f9ff",
+                    "surface": "#f9f9ff",
+                    "on-tertiary-fixed": "#141d23",
+                    "on-surface": "#191c21",
+                    "outline-variant": "#c2c6d3",
+                    "on-tertiary-container": "#bcc5cd",
+                    "on-secondary-fixed-variant": "#004884",
+                    "inverse-surface": "#2e3036",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#d9d9e1",
+                    "on-surface-variant": "#424751",
+                    "secondary": "#005fac",
+                    "surface-container-high": "#e7e8ef",
+                    "primary-container": "#0b4f9e",
+                    "on-secondary-container": "#003a6d",
+                    "secondary-container": "#5fa6fd",
+                    "on-tertiary-fixed-variant": "#3f484f",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#dbe4ec",
+                    "primary": "#003877",
+                    "primary-fixed-dim": "#abc7ff",
+                    "primary-fixed": "#d7e3ff",
+                    "outline": "#737783"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "lg": "24px",
+                    "base": "4px",
+                    "container-max": "1200px",
+                    "gutter": "24px",
+                    "xl": "48px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Sora"],
+                    "label-sm": ["Inter"],
+                    "headline-xl": ["Sora"],
+                    "headline-md": ["Sora"],
+                    "headline-sm": ["Sora"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #FFFFFF;
+            color: #191c21;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-shadow {
+            box-shadow: 0px 4px 20px rgba(15, 27, 45, 0.08);
+        }
+        .gallery-row:hover {
+            background-color: #EAF3FC;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md text-body-md">
+<!-- TopNavBar -->
+<header class="bg-surface shadow-sm sticky top-0 z-50">
+<div class="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto w-full">
+<div class="flex items-center gap-xl">
+<span class="font-headline-md text-headline-md font-bold text-primary">JB Transfert</span>
+<nav class="hidden md:flex gap-lg items-center">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md" href="#">Galeries</a>
+<a class="text-on-surface-variant font-body-md hover:bg-secondary-fixed-dim transition-colors duration-200 px-2 py-1 rounded" href="#">Activité</a>
+<a class="text-on-surface-variant font-body-md hover:bg-secondary-fixed-dim transition-colors duration-200 px-2 py-1 rounded" href="#">Stockage</a>
+<a class="text-on-surface-variant font-body-md hover:bg-secondary-fixed-dim transition-colors duration-200 px-2 py-1 rounded" href="#">Aide</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="bg-primary-container text-white px-md py-sm rounded hover:bg-[#2D7DD2] transition-colors font-semibold active:scale-95 transition-transform flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                    Nouvelle galerie
+                </button>
+<div class="flex gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-surface-variant rounded-full transition-all">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-variant rounded-full transition-all">
+<span class="material-symbols-outlined">logout</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow max-w-container-max mx-auto w-full px-gutter py-xl">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-md mb-xl">
+<div>
+<h1 class="font-headline-xl text-headline-xl text-primary mb-2">Gestion des Galeries</h1>
+<p class="text-on-surface-variant font-body-md">Organisez, partagez et gérez vos portfolios photographiques professionnels.</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-2 px-md py-sm border border-outline rounded-lg text-on-surface hover:bg-surface-container-low transition-all active:opacity-80">
+<span class="material-symbols-outlined">folder_copy</span>
+                    Déplacer vers...
+                </button>
+<button class="flex items-center gap-2 px-md py-sm bg-error-container text-on-error-container rounded-lg hover:opacity-90 transition-all active:opacity-80">
+<span class="material-symbols-outlined">delete</span>
+                    Supprimer la sélection
+                </button>
+</div>
+</div>
+<!-- Controls Area -->
+<div class="bg-surface-container-lowest rounded-xl p-md custom-shadow mb-lg border border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between gap-md items-center">
+<!-- Search -->
+<div class="relative w-full md:w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/15 focus:border-primary outline-none transition-all" placeholder="Rechercher une galerie..." type="text"/>
+</div>
+<!-- Filters -->
+<div class="flex items-center bg-surface-container-low p-1 rounded-lg w-full md:w-auto overflow-x-auto scrollbar-hide">
+<button class="px-6 py-2 bg-white shadow-sm rounded-md font-semibold text-primary transition-all whitespace-nowrap">Toutes</button>
+<button class="px-6 py-2 text-on-surface-variant hover:text-primary transition-all whitespace-nowrap">Partagées</button>
+<button class="px-6 py-2 text-on-surface-variant hover:text-primary transition-all whitespace-nowrap">Privées</button>
+</div>
+</div>
+</div>
+<!-- Table / Grid View -->
+<div class="bg-white rounded-xl custom-shadow border border-outline-variant overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-lg py-md w-10">
+<input class="rounded text-primary focus:ring-primary" type="checkbox"/>
+</th>
+<th class="px-lg py-md font-semibold text-on-surface-variant uppercase tracking-wider text-xs">Nom de la Galerie</th>
+<th class="px-lg py-md font-semibold text-on-surface-variant uppercase tracking-wider text-xs">Statut</th>
+<th class="px-lg py-md font-semibold text-on-surface-variant uppercase tracking-wider text-xs text-center">Fichiers</th>
+<th class="px-lg py-md font-semibold text-on-surface-variant uppercase tracking-wider text-xs text-center">Taille</th>
+<th class="px-lg py-md font-semibold text-on-surface-variant uppercase tracking-wider text-xs">Date de création</th>
+<th class="px-lg py-md font-semibold text-on-surface-variant uppercase tracking-wider text-xs text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Item 1 -->
+<tr class="gallery-row transition-colors group">
+<td class="px-lg py-md">
+<input class="rounded text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded bg-surface-container-high flex-shrink-0 bg-cover bg-center" data-alt="A professional architectural photograph of a modern glass skyscraper reflecting a clear blue sky. The composition is clean and minimalist, using a cool blue and white palette to convey high-end corporate reliability and modern design. Soft, even lighting highlights the sleek textures of the building." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAXgh6eJD2-e_uVALhLtGMK5mPNXcoxwVnn9rqZx22GyxOEhP52fq7K3ozz-m17s79XD4W96P4gz6VqtY3_rgoMSxjGOw8rRwI0yj6rYDfV5MERsgcnImx9onZbm1wm3ROpQeDy-Lk6NSAYBE-nc70n-30_j2TTBaXTBALLTdI41tQHQqlIDR_m4LAplyRKD02CEcGrP3scK1Mhxbt6_qyIRNDJIxWQRsxpGbKzv3AtwqahdLVC4QOJjA')"></div>
+<div>
+<div class="font-semibold text-on-surface">Mariage - Julie &amp; Thomas</div>
+<div class="text-xs text-outline">Client: Thomas B.</div>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#EAF3FC] text-primary text-xs font-medium">
+<span class="material-symbols-outlined text-xs">public</span> Partagée
+                                </span>
+</td>
+<td class="px-lg py-md text-center text-on-surface-variant">142 photos</td>
+<td class="px-lg py-md text-center text-on-surface-variant">2.4 GB</td>
+<td class="px-lg py-md text-on-surface-variant">12 Oct 2024</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-1">
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all" title="Modifier">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all" title="Partager">
+<span class="material-symbols-outlined text-xl">share</span>
+</button>
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-error transition-all" title="Supprimer">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Item 2 -->
+<tr class="gallery-row transition-colors">
+<td class="px-lg py-md">
+<input class="rounded text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded bg-surface-container-high flex-shrink-0 bg-cover bg-center" data-alt="An artistic close-up of a high-quality professional camera lens reflecting a soft studio light environment. The image is crisp, showing intricate details of the lens construction with a sophisticated aesthetic of dark metal and clear glass. The mood is professional and focused on technical excellence." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDJSCi8Mr0m1ypjtwC6zA8k_Q47HXVDvcz7BOcwProLvdvwzSfGihJiZwhuTXf2kjXJbnwkSYdFn1m-fGdOzelhgqdVCS3_jg4Hdcn6j9jFWvMHZ-hqeiJWK2vgN3oN4n6v4yuB8H5WXFvO7mRzCjYanMiZC2QVKTYUO0pGeXsBXteWx0BxLqMwHiEBXXsbV1bCHheF9dLJSu9TQYhMKLqkTwfnqOAfFXm0KX1FXe_EawDWkXgUK9qlIw')"></div>
+<div>
+<div class="font-semibold text-on-surface">Shooting Corporate L'Oréal</div>
+<div class="text-xs text-outline">Interne - Brouillon</div>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-medium">
+<span class="material-symbols-outlined text-xs">lock</span> Privée
+                                </span>
+</td>
+<td class="px-lg py-md text-center text-on-surface-variant">85 photos</td>
+<td class="px-lg py-md text-center text-on-surface-variant">1.1 GB</td>
+<td class="px-lg py-md text-on-surface-variant">08 Oct 2024</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-1">
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-xl">edit</span></button>
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-xl">share</span></button>
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-error transition-all"><span class="material-symbols-outlined text-xl">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Item 3 -->
+<tr class="gallery-row transition-colors">
+<td class="px-lg py-md">
+<input class="rounded text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded bg-surface-container-high flex-shrink-0 bg-cover bg-center" data-alt="A wide-angle landscape photograph of a serene mountain range at dawn. The sky is a gradient of soft blue and pale orange, reflecting a tranquil and spacious feeling. The lighting is ethereal and soft, emphasizing the depth and scale of the natural scenery, fitting a high-end photography portfolio." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCRsCVV_y_bHxYwQ_4_J7ftYuLG-so2IYtvRrtYp3uEZPzk_mmwgg2Y8EcXD3FtK2jAbpMQdU58GE67OJw5aKSCJpeLqrfU8ofY33FZDmI0FDpV95XPYfRy1m_zXVTOr2WA0BBXH6KnttNKdWYOfKXKqJzhhbH6SgN1sIF5XvdNukhXcP9VYnQiDxi06aStkspUNVO11AIFIOST-8yDp_B1pihnfnZQ0bt1zutocsNHAy5btalH7nuxUQ')"></div>
+<div>
+<div class="font-semibold text-on-surface">Portfolio Paysages 2024</div>
+<div class="text-xs text-outline">Public</div>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#EAF3FC] text-primary text-xs font-medium">
+<span class="material-symbols-outlined text-xs">public</span> Partagée
+                                </span>
+</td>
+<td class="px-lg py-md text-center text-on-surface-variant">42 photos</td>
+<td class="px-lg py-md text-center text-on-surface-variant">640 MB</td>
+<td class="px-lg py-md text-on-surface-variant">25 Sep 2024</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-1">
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-xl">edit</span></button>
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-xl">share</span></button>
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-error transition-all"><span class="material-symbols-outlined text-xl">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Item 4 -->
+<tr class="gallery-row transition-colors">
+<td class="px-lg py-md">
+<input class="rounded text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded bg-surface-container-high flex-shrink-0 bg-cover bg-center" data-alt="A macro studio shot of a perfectly shaped water droplet falling into a calm pool, creating elegant concentric ripples. The lighting is professional studio-quality, with a clean white and light blue color palette. The image represents precision, clarity, and the high-end technical capability of a professional photographer." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBLNPJb4s28Xf0QmT8By5A2jkenNLukDdU4-4DCcno2n7sRHAb1LSu7td9xzYz6my4B0EfL5KaQH1Liw3uPlxsUzPDUPhu1whyZqylivMNZrAwoPr3K9xm4qhg_RuwpMS1x_eCaKr7Ki-v8IVJhuGp5NA13nhVPHZ-P51-uYi0PpuPcypsqyYjzc-Wj14ee4xsDqxcfp_3ydXoI-FASLeIZV2GYuqt6CaI0sQG3c7LpJJcQ0X_PwW7nwA')"></div>
+<div>
+<div class="font-semibold text-on-surface">Nature Morte - Série Eau</div>
+<div class="text-xs text-outline">Privée</div>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-medium">
+<span class="material-symbols-outlined text-xs">lock</span> Privée
+                                </span>
+</td>
+<td class="px-lg py-md text-center text-on-surface-variant">28 photos</td>
+<td class="px-lg py-md text-center text-on-surface-variant">412 MB</td>
+<td class="px-lg py-md text-on-surface-variant">15 Sep 2024</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-1">
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-xl">edit</span></button>
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-xl">share</span></button>
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-error transition-all"><span class="material-symbols-outlined text-xl">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / Footer -->
+<div class="px-lg py-md bg-surface-container-lowest border-t border-outline-variant flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Affichage de 1 à 4 sur 24 galeries</span>
+<div class="flex gap-2">
+<button class="px-3 py-1 rounded border border-outline-variant hover:bg-surface-container-low transition-all disabled:opacity-50" disabled="">Précédent</button>
+<button class="px-3 py-1 rounded border border-primary bg-primary text-white font-medium">1</button>
+<button class="px-3 py-1 rounded border border-outline-variant hover:bg-surface-container-low transition-all">2</button>
+<button class="px-3 py-1 rounded border border-outline-variant hover:bg-surface-container-low transition-all">3</button>
+<button class="px-3 py-1 rounded border border-outline-variant hover:bg-surface-container-low transition-all">Suivant</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant py-xl w-full">
+<div class="flex flex-col md:flex-row justify-between items-center px-gutter max-w-container-max mx-auto gap-md">
+<div class="flex items-center gap-md">
+<span class="font-bold text-primary font-headline-sm">JB Transfert</span>
+<span class="text-on-tertiary-fixed-variant font-label-sm">© 2024 JB Transfert. All rights reserved.</span>
+</div>
+<nav class="flex gap-lg">
+<a class="text-on-tertiary-fixed-variant font-label-sm hover:text-primary transition-colors" href="#">Confidentialité</a>
+<a class="text-on-tertiary-fixed-variant font-label-sm hover:text-primary transition-colors" href="#">Conditions</a>
+<a class="text-on-tertiary-fixed-variant font-label-sm hover:text-primary transition-colors" href="#">Contact</a>
+</nav>
+</div>
+</footer>
+<script>
+        // Micro-interaction for row selection
+        const masterCheckbox = document.querySelector('thead input[type="checkbox"]');
+        const rowCheckboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+
+        masterCheckbox.addEventListener('change', (e) => {
+            rowCheckboxes.forEach(cb => {
+                cb.checked = e.target.checked;
+                updateRowStyle(cb);
+            });
+        });
+
+        rowCheckboxes.forEach(cb => {
+            cb.addEventListener('change', () => {
+                updateRowStyle(cb);
+                const allChecked = Array.from(rowCheckboxes).every(c => c.checked);
+                masterCheckbox.checked = allChecked;
+            });
+        });
+
+        function updateRowStyle(checkbox) {
+            const row = checkbox.closest('tr');
+            if (checkbox.checked) {
+                row.classList.add('bg-secondary-fixed/30');
+            } else {
+                row.classList.remove('bg-secondary-fixed/30');
+            }
+        }
+    </script>
+</body></html>

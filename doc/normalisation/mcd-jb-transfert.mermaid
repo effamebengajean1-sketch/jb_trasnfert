@@ -1,0 +1,32 @@
+flowchart LR
+    UTILISATEUR["UTILISATEUR
+    ─────────────
+    id
+    email
+    motDePasseHash
+    nom
+    dateCreation"]
+
+    GALERIE["GALERIE
+    ─────────────
+    id
+    titre
+    slug
+    dateCreation"]
+
+    PHOTO["PHOTO
+    ─────────────
+    id
+    nomFichier
+    cheminFichier
+    tailleOctets
+    formatMime
+    dateUpload"]
+
+    POSSEDE{{POSSÈDE}}
+    CONTIENT{{CONTIENT}}
+
+    UTILISATEUR -- "1,n" --- POSSEDE
+    POSSEDE -- "1,1" --- GALERIE
+    GALERIE -- "1,n" --- CONTIENT
+    CONTIENT -- "1,1" --- PHOTO

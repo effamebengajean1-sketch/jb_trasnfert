@@ -1,0 +1,70 @@
+{
+  "app": {
+    "title": "JB Transfert",
+    "tagline": "Share your photos in original quality"
+  },
+  "nav": {
+    "home": "Home",
+    "galleries": "My galleries",
+    "profile": "Profile",
+    "login": "Login",
+    "register": "Sign up",
+    "logout": "Logout"
+  },
+  "hero": {
+    "title": "Share your images in original quality.",
+    "subtitle": "The secure platform to share your high-resolution files without compression, without compromise.",
+    "cta": "Start for free",
+    "email_placeholder": "your@email.com",
+    "no_card": "No credit card required",
+    "badge": "Original quality guaranteed"
+  },
+  "features": {
+    "title": "Designed for your workflow",
+    "subtitle": "Everything you need to send, receive, and manage your high-definition photos securely.",
+    "preview": {
+      "title": "Preview galleries",
+      "desc": "Your recipients can view photos directly in their browser before downloading them."
+    },
+    "secure": {
+      "title": "Secure link sharing",
+      "desc": "Each gallery has a unique link, accessible only to those you share it with."
+    },
+    "quality": {
+      "title": "Original quality",
+      "desc": "No compression, no transformation: your images remain exactly as uploaded."
+    }
+  },
+  "galleries": {
+    "title": "My Galleries",
+    "subtitle": "Organize, share, and manage your photographic portfolios.",
+    "new": "New gallery",
+    "empty": "No galleries yet",
+    "empty_desc": "Create your first gallery to start sharing your photos.",
+    "create": "Create a gallery"
+  },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Login",
+      "no_account": "Don't have an account?",
+      "register_link": "Sign up"
+    },
+    "register": {
+      "title": "Sign up",
+      "name": "Full name",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Create my account",
+      "has_account": "Already have an account?",
+      "login_link": "Login"
+    }
+  },
+  "errors": {
+    "generic": "An error occurred",
+    "network": "Network error",
+    "not_found": "Page not found"
+  }
+}

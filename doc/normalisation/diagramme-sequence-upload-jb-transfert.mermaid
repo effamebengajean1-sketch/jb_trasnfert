@@ -1,0 +1,42 @@
+sequenceDiagram
+    actor U as Utilisateur
+    participant F as Frontend (Nuxt)
+    participant M as auth.middleware
+    participant UM as upload.middleware
+    participant C as upload.controller
+    participant S as upload.service
+    participant D as Disque (uploads/)
+    participant P as Prisma / PostgreSQL
+
+    U->>F: Dépose un fichier (UploadDropzone)
+    F->>F: useUpload : valide format/taille côté client
+    F->>M: POST /galleries/:id/upload (token)
+    M->>M: Vérifie le token
+    alt Token invalide
+        M-->>F: 401 Unauthorized
+        F-->>U: Affiche erreur d'authentification
+    else Token valide
+        M->>UM: req.user injecté
+        UM->>UM: Valide format MIME et taille (≤ 50 Mo)
+        alt Format ou taille invalide
+            UM-->>F: 400 Bad Request { error }
+            F-->>U: Affiche UploadErrorBanner
+        else Fichier valide
+            UM->>C: Fichier prêt (req.file)
+            C->>S: creerPhoto(galerieId, fichier)
+            S->>S: Vérifie que la galerie appartient à req.user
+            alt Galerie non possédée
+                S-->>C: Erreur accès refusé
+                C-->>F: 403 Forbidden
+                F-->>U: Affiche erreur
+            else Accès autorisé
+                S->>D: Écrit le fichier (nom unique)
+                D-->>S: Chemin du fichier
+                S->>P: INSERT Photo (métadonnées + chemin)
+                P-->>S: Photo créée
+                S-->>C: Photo
+                C-->>F: 201 Created { photo }
+                F-->>U: Affiche la photo dans la galerie
+            end
+        end
+    end

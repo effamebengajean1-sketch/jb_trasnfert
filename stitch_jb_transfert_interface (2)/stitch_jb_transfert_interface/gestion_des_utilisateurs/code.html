@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JB Transfert Admin - Gestion des Utilisateurs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Sora:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#323b42",
+                    "secondary": "#005fac",
+                    "surface-dim": "#d9d9e1",
+                    "surface-container-high": "#e7e8ef",
+                    "tertiary-fixed-dim": "#bec8d0",
+                    "surface-bright": "#f9f9ff",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2e3036",
+                    "secondary-fixed-dim": "#a4c9ff",
+                    "on-primary-fixed-variant": "#00458f",
+                    "secondary-container": "#5fa6fd",
+                    "outline": "#737783",
+                    "secondary-fixed": "#d4e3ff",
+                    "on-secondary-container": "#003a6d",
+                    "surface-container-highest": "#e2e2e9",
+                    "on-tertiary-fixed": "#141d23",
+                    "on-secondary-fixed-variant": "#004884",
+                    "primary-container": "#0b4f9e",
+                    "surface-variant": "#e2e2e9",
+                    "surface": "#f9f9ff",
+                    "on-primary-container": "#a6c4ff",
+                    "surface-container": "#ededf5",
+                    "on-secondary-fixed": "#001c39",
+                    "on-surface": "#191c21",
+                    "on-primary": "#ffffff",
+                    "background": "#f9f9ff",
+                    "tertiary-container": "#495259",
+                    "inverse-primary": "#abc7ff",
+                    "surface-container-low": "#f3f3fa",
+                    "on-background": "#191c21",
+                    "primary-fixed-dim": "#abc7ff",
+                    "outline-variant": "#c2c6d3",
+                    "on-tertiary-container": "#bcc5cd",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#d7e3ff",
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#424751",
+                    "on-tertiary-fixed-variant": "#3f484f",
+                    "inverse-on-surface": "#f0f0f8",
+                    "primary": "#003877",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#dbe4ec",
+                    "on-primary-fixed": "#001b3f",
+                    "surface-tint": "#245dad"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1200px",
+                    "lg": "24px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "base": "4px",
+                    "xl": "48px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Sora"],
+                    "headline-xl": ["Sora"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Sora"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Sora"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .user-table-row:hover {
+            box-shadow: 0px 4px 20px rgba(15, 27, 45, 0.08);
+            transform: translateY(-1px);
+        }
+        .glass-header {
+            backdrop-filter: blur(8px);
+            background: rgba(249, 249, 255, 0.8);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+<!-- Navigation Drawer (SideNav) -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant flex flex-col p-md gap-sm z-50">
+<div class="mb-xl px-md">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">JB Transfert</h1>
+<p class="text-label-sm text-on-surface-variant">Admin Console v2.4.0</p>
+</div>
+<nav class="flex-grow flex flex-col gap-sm">
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high rounded-xl px-md py-sm transition-all group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary" data-icon="dashboard">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md bg-secondary-container text-on-secondary-container rounded-xl px-md py-sm transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-body-md font-bold">Users</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high rounded-xl px-md py-sm transition-all group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary" data-icon="swap_horiz">swap_horiz</span>
+<span class="font-body-md">Transfers</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high rounded-xl px-md py-sm transition-all group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary" data-icon="monitor_heart">monitor_heart</span>
+<span class="font-body-md">System Health</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-md px-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold">
+                    SA
+                </div>
+<div>
+<p class="font-label-md text-on-surface">Super Admin</p>
+<p class="text-label-sm text-on-surface-variant">jb-root@admin.com</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-40 glass-header border-b border-outline-variant flex justify-between items-center px-lg py-md">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="security">security</span>
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Gestion des Utilisateurs</h2>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative group">
+<button class="flex items-center gap-sm px-md py-sm hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-3 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional corporate portrait of a clean-cut technology administrator in a bright, modern office with soft blue lighting. The style is high-end, corporate photography with shallow depth of field, reflecting reliability and security." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDLvlXb9OY8tpnJF7bWt5BfD15o4Ry3Hf3YpIwKzrdMQ82PyRzkbcqxHD-2Mh1jAca5N1eK40kvL6xfgrlHlssoE-M6XqA7xZf7N71hqoI4kU8aa4cGQgb8bBT4hyFegPDRrDjdXlqUDFoYf94e1V9BgtLB21eNhktoW0APPyCuxvgfutNVEhnFeAZmhyEqXTY4l2DgR5lfTzEbe6n7Kv_fF8RYrGfdyhTtwI0bMwq0nccBAQDJ3VrCw"/>
+</div>
+</div>
+</header>
+<div class="p-lg max-w-container-max mx-auto">
+<!-- Filters and Search Bar -->
+<section class="mb-lg grid grid-cols-1 md:grid-cols-12 gap-md items-end">
+<div class="md:col-span-5">
+<label class="block text-label-sm text-on-surface-variant mb-xs ml-sm">Rechercher un utilisateur</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-xl pr-md py-sm bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 transition-all font-body-md" placeholder="Nom, email..." type="text"/>
+</div>
+</div>
+<div class="md:col-span-3">
+<label class="block text-label-sm text-on-surface-variant mb-xs ml-sm">Rôle</label>
+<select class="w-full px-md py-sm bg-surface-container-lowest border border-outline-variant rounded-xl focus:border-primary appearance-none cursor-pointer font-body-md">
+<option>Tous les rôles</option>
+<option>Admin</option>
+<option>Client</option>
+</select>
+</div>
+<div class="md:col-span-3">
+<label class="block text-label-sm text-on-surface-variant mb-xs ml-sm">Statut</label>
+<select class="w-full px-md py-sm bg-surface-container-lowest border border-outline-variant rounded-xl focus:border-primary appearance-none cursor-pointer font-body-md">
+<option>Tous les statuts</option>
+<option>Actif</option>
+<option>Suspendu</option>
+</select>
+</div>
+<div class="md:col-span-1 flex justify-end">
+<button class="bg-primary text-on-primary h-[42px] px-md rounded-xl hover:bg-secondary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+</button>
+</div>
+</section>
+<!-- User List Table -->
+<section class="bg-surface-container-lowest rounded-full overflow-hidden shadow-sm border border-outline-variant">
+<table class="w-full border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-left border-b border-outline-variant">
+<th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider">Utilisateur</th>
+<th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider">Rôle</th>
+<th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider">Dernière activité</th>
+<th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider">Statut</th>
+<th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- User Row 1 -->
+<tr class="user-table-row transition-all duration-200">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold">JD</div>
+<div>
+<p class="font-body-md font-semibold text-on-surface">Jean Dupont</p>
+<p class="text-body-sm text-on-surface-variant">jean.dupont@example.com</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-sm py-xs bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-lg text-label-sm font-medium">Client</span>
+</td>
+<td class="px-lg py-md text-body-sm text-on-surface-variant">Il y a 2 heures</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-xs text-green-600 font-medium text-label-sm">
+<span class="w-2 h-2 rounded-full bg-green-600"></span>
+                                    Actif
+                                </span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-sm">
+<button class="p-xs text-primary hover:bg-primary/10 rounded-lg transition-colors" title="Modifier">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-xs text-error hover:bg-error/10 rounded-lg transition-colors" title="Suspendre">
+<span class="material-symbols-outlined" data-icon="block">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- User Row 2 -->
+<tr class="user-table-row transition-all duration-200">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-bold">ML</div>
+<div>
+<p class="font-body-md font-semibold text-on-surface">Marie Laurent</p>
+<p class="text-body-sm text-on-surface-variant">marie.l@corp.net</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-sm py-xs bg-secondary text-on-secondary rounded-lg text-label-sm font-medium">Admin</span>
+</td>
+<td class="px-lg py-md text-body-sm text-on-surface-variant">En ligne</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-xs text-green-600 font-medium text-label-sm">
+<span class="w-2 h-2 rounded-full bg-green-600"></span>
+                                    Actif
+                                </span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-sm">
+<button class="p-xs text-primary hover:bg-primary/10 rounded-lg transition-colors" title="Modifier">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-xs text-error hover:bg-error/10 rounded-lg transition-colors" title="Suspendre">
+<span class="material-symbols-outlined" data-icon="block">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- User Row 3 -->
+<tr class="user-table-row transition-all duration-200">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-dim text-on-surface-variant flex items-center justify-center font-bold text-lg">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</div>
+<div>
+<p class="font-body-md font-semibold text-on-surface">Robert Martin</p>
+<p class="text-body-sm text-on-surface-variant">robert.m@service.fr</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-sm py-xs bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-lg text-label-sm font-medium">Client</span>
+</td>
+<td class="px-lg py-md text-body-sm text-on-surface-variant">15 oct. 2023</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-xs text-error font-medium text-label-sm">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+                                    Suspendu
+                                </span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-sm">
+<button class="p-xs text-primary hover:bg-primary/10 rounded-lg transition-colors" title="Modifier">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-xs text-secondary hover:bg-secondary/10 rounded-lg transition-colors" title="Réactiver">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- User Row 4 -->
+<tr class="user-table-row transition-all duration-200">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed-dim text-on-secondary-container flex items-center justify-center font-bold">ST</div>
+<div>
+<p class="font-body-md font-semibold text-on-surface">Sophie Thomas</p>
+<p class="text-body-sm text-on-surface-variant">st@design.com</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-sm py-xs bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-lg text-label-sm font-medium">Client</span>
+</td>
+<td class="px-lg py-md text-body-sm text-on-surface-variant">Hier, 18:45</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-xs text-green-600 font-medium text-label-sm">
+<span class="w-2 h-2 rounded-full bg-green-600"></span>
+                                    Actif
+                                </span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-sm">
+<button class="p-xs text-primary hover:bg-primary/10 rounded-lg transition-colors" title="Modifier">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-xs text-error hover:bg-error/10 rounded-lg transition-colors" title="Suspendre">
+<span class="material-symbols-outlined" data-icon="block">block</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="px-lg py-md bg-surface-container-low flex justify-between items-center border-t border-outline-variant">
+<p class="text-label-sm text-on-surface-variant">Affichage de 1-4 sur 128 utilisateurs</p>
+<div class="flex gap-xs">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-on-primary font-bold text-sm">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface-container-high transition-colors text-sm">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface-container-high transition-colors text-sm">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Quick Action Stats (Bento Style) -->
+<section class="mt-xl grid grid-cols-1 md:grid-cols-4 gap-lg">
+<div class="bg-primary-container p-lg rounded-full text-on-primary-container flex flex-col justify-between shadow-sm">
+<span class="material-symbols-outlined text-4xl opacity-50" data-icon="person_add">person_add</span>
+<div class="mt-md">
+<h3 class="font-headline-sm">Nouveau Client</h3>
+<p class="text-body-sm opacity-90 mt-xs">Créer manuellement un compte utilisateur.</p>
+</div>
+<button class="mt-md bg-surface text-primary px-md py-sm rounded-xl font-label-md w-fit hover:bg-primary-fixed-dim transition-colors">Démarrer</button>
+</div>
+<div class="bg-surface-container-low p-lg rounded-full border border-outline-variant flex flex-col justify-between">
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Total Utilisateurs</p>
+<h2 class="text-headline-lg font-bold text-on-surface mt-xs">1,284</h2>
+</div>
+<div class="mt-md flex items-center gap-xs text-green-600 font-medium">
+<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
+<span class="text-body-sm">+12% ce mois</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-lg rounded-full border border-outline-variant flex flex-col justify-between">
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Comptes Suspendus</p>
+<h2 class="text-headline-lg font-bold text-error mt-xs">14</h2>
+</div>
+<p class="text-body-sm text-on-surface-variant mt-md">Nécessite une revue de sécurité.</p>
+</div>
+<div class="bg-secondary-container p-lg rounded-full text-on-secondary-container flex flex-col justify-between">
+<span class="material-symbols-outlined text-4xl opacity-50" data-icon="file_download">file_download</span>
+<div>
+<h3 class="font-label-md">Exporter la liste</h3>
+<p class="text-body-sm opacity-90">CSV / PDF Format</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<script>
+        // Simple Micro-interactions
+        document.querySelectorAll('.user-table-row').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.classList.add('bg-surface-container-low');
+            });
+            row.addEventListener('mouseleave', () => {
+                row.classList.remove('bg-surface-container-low');
+            });
+        });
+
+        // Search Bar Focus Effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-[1.01]');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-[1.01]');
+        });
+    </script>
+</body></html>
