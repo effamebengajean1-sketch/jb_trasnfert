@@ -4,9 +4,21 @@ const errorHandler = require('./middlewares/errorHandler.middleware');
 
 const app = express();
 
-// Autorise les requêtes venant du frontend Nuxt (autre origine/port).
+// CORS : autorise localhost (dev) et Vercel (prod)
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://jb-transfert.vercel.app',
+];
+
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: (origin, callback) => {
+    // origin peut être undefined pour les requêtes serveur-à-serveur
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
 }));
 
@@ -23,7 +35,7 @@ app.use('/auth', require('./routes/auth.routes'));
 app.use('/galleries', require('./routes/gallery.routes'));
 app.use('/galleries/:id', require('./routes/upload.routes'));
 app.use('/g', require('./routes/public.routes'));
-app.use('/users', require('./routes/user.routes')); // ← AJOUTÉ
+app.use('/users', require('./routes/user.routes'));
 const adminRoutes = require('./routes/admin.routes');
 app.use('/admin', adminRoutes);
 
