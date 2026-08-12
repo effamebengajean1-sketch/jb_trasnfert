@@ -1,5 +1,25 @@
 {
+  "name": "jb-transfert-frontend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
   "dependencies": {
+    "nuxt": "^4.5.1",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0",
+    "@nuxtjs/tailwindcss": "^6.14.0",
+    "tailwindcss": "^3.4.17",
+    "@nuxt/icon": "^1.10.3",
+    "@vite-pwa/nuxt": "^0.10.6",
     "@iconify-json/material-symbols": "^1.2.88"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3",
+    "@types/node": "^22.10.7"
   }
 }
