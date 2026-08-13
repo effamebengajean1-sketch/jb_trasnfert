@@ -12,7 +12,7 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5173',
   'https://jb-transfert.vercel.app',
-  'https://jb-trasnfert-six.vercel.app',
+  'https://jb-trasnfert-six.vercel.app', // (Attention, petite faute de frappe ici "trasnfert" au lieu de "transfert", mais je laisse au cas où c'est ton vrai lien Vercel)
   'https://jb-trasnfert-dny7-three.vercel.app',
 ];
 
@@ -57,6 +57,9 @@ const adminRoutes = require('./routes/admin.routes');
 app.use('/admin', adminRoutes);
 
 // ========== FICHIERS STATIQUES ==========
+// ✅ C'EST ICI QUE TES PHOTOS SONT RENDUES ACCESSIBLES AU FRONTEND !
+// Quand le frontend demande https://jb-transfert-api.onrender.com/uploads/mon-image.jpg,
+// Express va chercher le fichier "mon-image.jpg" dans le dossier "uploadDir".
 app.use('/uploads', express.static(uploadDir));
 
 // Healthcheck
