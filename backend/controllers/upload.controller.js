@@ -1,7 +1,7 @@
 const galleryService = require('../services/gallery.service');
 const uploadService = require('../services/upload.service');
-const fs = require('fs').promises;
-const path = require('path');
+// J'ai supprimé les imports 'fs' et 'path' qui ne servent plus ici 
+// puisque le service s'occupe déjà de la suppression physique du fichier.
 
 /**
  * POST /galleries/:id/upload
@@ -27,15 +27,9 @@ async function uploadPhoto(req, res) {
       return res.status(403).json({ error: 'Accès refusé à cette galerie' });
     }
 
-    // Crée l'entrée en base
-    const photo = await uploadService.creerPhoto({
-      galerieId,
-      nomOriginal: fichier.originalname,
-      nomFichier: fichier.filename,
-      chemin: fichier.path,
-      taille: fichier.size,
-      typeMime: fichier.mimetype,
-    });
+    // CORRECTION : On passe bien 2 arguments distincts (galerieId et l'objet fichier)
+    // comme l'attend le service, et plus un seul gros objet.
+    const photo = await uploadService.creerPhoto(galerieId, fichier);
 
     return res.status(201).json(photo);
   } catch (err) {
@@ -70,17 +64,8 @@ async function removePhoto(req, res) {
       return res.status(404).json({ error: 'Photo introuvable dans cette galerie' });
     }
 
-    // Supprime le fichier physique sur le disque
-    try {
-      await fs.unlink(photo.chemin);
-    } catch (fsErr) {
-      // Si le fichier n'existe déjà plus sur le disque, on continue quand même
-      if (fsErr.code !== 'ENOENT') {
-        console.error('Erreur suppression fichier:', fsErr);
-      }
-    }
-
-    // Supprime la ligne en base
+    // CORRECTION : On laisse le service gérer la suppression du fichier physique 
+    // ET de la ligne en base (il est prévu pour ça et gère les erreurs si le fichier manque)
     await uploadService.supprimerPhoto(photoId);
 
     return res.status(204).send();
@@ -90,5 +75,5 @@ async function removePhoto(req, res) {
   }
 }
 
-// ⚠️  EXPORTE LES DEUX FONCTIONS — c'était le bug
+// Exports des deux fonctions
 module.exports = { uploadPhoto, removePhoto };
