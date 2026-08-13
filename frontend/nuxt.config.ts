@@ -61,13 +61,15 @@ export default defineNuxtConfig({
       start_url: '/',
       icons: [
         {
-          src: '/icon-192x192.png',
+          // ✅ CORRIGÉ : Correspond exactement au fichier dans /public
+          src: '/manifest-icon-192.maskable.png',
           sizes: '192x192',
           type: 'image/png',
           purpose: 'any maskable',
         },
         {
-          src: '/icon-512x512.png',
+          // ✅ CORRIGÉ : Correspond exactement au fichier dans /public
+          src: '/manifest-icon-512.maskable.png',
           sizes: '512x512',
           type: 'image/png',
           purpose: 'any maskable',
@@ -75,10 +77,10 @@ export default defineNuxtConfig({
       ],
     },
     workbox: {
-      // ✅ CORRECTION 1 : Il faut '/index.html' pour un SPA Nuxt, pas '/'
-      navigateFallback: '/index.html', 
+      // ✅ CORRIGÉ : /index.html au lieu de '/' pour éviter l'erreur "non-precached-url"
+      navigateFallback: '/index.html',
       
-      // ✅ CORRECTION 2 : On exclut l'API et les uploads du cache hors-ligne
+      // ✅ AJOUTÉ : Empêche le Service Worker de paniquer sur les appels API et les images
       navigateFallbackDenylist: [
         /^\/api/,                        
         /\.(png|jpg|jpeg|gif|webp|heic)$/,
