@@ -7,19 +7,41 @@ const app = express();
 // CORS : autorise localhost (dev) et Vercel (prod)
 const allowedOrigins = [
   'http://localhost:3000',
+  'http://localhost:5173',
   'https://jb-transfert.vercel.app',
+  'https://jb-trasnfert-six.vercel.app',        // ← ton frontend actuel
+  'https://jb-trasnfert-dny7-three.vercel.app', // ← l'ancien (au cas où)
+];
+
+// Regex pour accepter automatiquement tous les futurs deploys Vercel
+const allowedPatterns = [
+  /^https:\/\/jb-trasnfert.*\.vercel\.app$/,
+  /^https:\/\/jb-transfert.*\.vercel\.app$/,
 ];
 
 app.use(cors({
   origin: (origin, callback) => {
-    // origin peut être undefined pour les requêtes serveur-à-serveur
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
+    // Requêtes serveur-à-serveur (pas d'origin)
+    if (!origin) return callback(null, true);
+
+    // Vérifie string exacte
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
     }
+
+    // Vérifie regex
+    const matchesPattern = allowedPatterns.some(pattern => pattern.test(origin));
+    if (matchesPattern) {
+      return callback(null, true);
+    }
+
+    // Log pour debug
+    console.error('CORS rejeté pour:', origin);
+    callback(new Error('Not allowed by CORS'));
   },
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
 }));
 
 // Middlewares globaux
