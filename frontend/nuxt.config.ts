@@ -75,8 +75,16 @@ export default defineNuxtConfig({
       ],
     },
     workbox: {
-      navigateFallback: '/',
-      maximumFileSizeToCacheInBytes: 5000000, // <-- AJOUT ICI (5 Mo)
+      // ✅ CORRECTION 1 : Il faut '/index.html' pour un SPA Nuxt, pas '/'
+      navigateFallback: '/index.html', 
+      
+      // ✅ CORRECTION 2 : On exclut l'API et les uploads du cache hors-ligne
+      navigateFallbackDenylist: [
+        /^\/api/,                        
+        /\.(png|jpg|jpeg|gif|webp|heic)$/,
+      ],
+
+      maximumFileSizeToCacheInBytes: 5000000, // 5 Mo
       globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
       runtimeCaching: [
         {
