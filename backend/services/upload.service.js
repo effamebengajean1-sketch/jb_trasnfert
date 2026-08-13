@@ -1,8 +1,3 @@
-// Service Upload : Multer a déjà écrit le fichier sur disque au moment
-// où ce service intervient (voir upload.middleware.js). Son rôle ici est
-// uniquement d'enregistrer les métadonnées en base et de gérer la
-// suppression physique des fichiers si besoin.
-
 const fs = require('fs/promises');
 const path = require('path');
 const prisma = require('../lib/prisma');
