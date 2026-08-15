@@ -1,78 +1,107 @@
-const express = require('express');
-const cors = require('cors');
-const fs = require('fs');
-const path = require('path');
-const errorHandler = require('./middlewares/errorHandler.middleware');
-const env = require('./config/env');
+// Service Upload : envoie le fichier reçu en mémoire vers Cloudinary,
+// puis enregistre l'URL renvoyée en base.
+//
+// cheminFichier contient désormais l'URL HTTPS complète de Cloudinary,
+// et non plus un nom de fichier local.
 
-const app = express();
+const prisma = require('../lib/prisma');
+const cloudinary = require('cloudinary').v2;
 
-// ========== CORS ==========
-const allowedOrigins = [
-  'http://localhost:3000',
-  'http://localhost:5173',
-  'https://jb-transfert.vercel.app',
-  'https://jb-trasnfert-six.vercel.app', // (Attention, petite faute de frappe ici "trasnfert" au lieu de "transfert", mais je laisse au cas où c'est ton vrai lien Vercel)
-  'https://jb-trasnfert-dny7-three.vercel.app',
-];
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true,
+});
 
-const allowedPatterns = [
-  /^https:\/\/jb-trasnfert.*\.vercel\.app$/,
-  /^https:\/\/jb-transfert.*\.vercel\.app$/,
-];
+/**
+ * Envoie un buffer vers Cloudinary et résout avec le résultat de l'upload.
+ */
+function envoyerVersCloudinary(buffer) {
+  return new Promise((resolve, reject) => {
+    const flux = cloudinary.uploader.upload_stream(
+      {
+        folder: 'jb-transfert',
+        resource_type: 'image',
+      },
+      (erreur, resultat) => {
+        if (erreur) {
+          reject(erreur);
+          return;
+        }
 
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) return callback(null, true);
-    if (allowedPatterns.some(p => p.test(origin))) return callback(null, true);
-    console.error('CORS rejeté pour:', origin);
-    callback(new Error('Not allowed by CORS'));
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-}));
+        resolve(resultat);
+      }
+    );
 
-// ========== CRÉATION DOSSIER UPLOADS (crucial sur Render) ==========
-const uploadDir = path.resolve(env.uploadDir || 'uploads');
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-  console.log('✅ Dossier uploads créé:', uploadDir);
+    flux.end(buffer);
+  });
 }
 
-// ========== ROUTES AVEC MULTER (AVANT express.json !) ==========
-// Multer doit parser le body avant que express.json() ne touche quoi que ce soit
-app.use('/galleries/:id', require('./routes/upload.routes'));
+/**
+ * Enregistre une photo : upload Cloudinary puis création en base.
+ */
+async function creerPhoto(galerieId, fichierMulter) {
+  const resultat = await envoyerVersCloudinary(fichierMulter.buffer);
 
-// ========== PUIS express.json() pour les routes classiques ==========
-app.use(express.json());
+  return prisma.photo.create({
+    data: {
+      nomFichier: fichierMulter.originalname,
+      cheminFichier: resultat.secure_url,
+      cloudinaryId: resultat.public_id,
+      tailleOctets: fichierMulter.size,
+      formatMime: fichierMulter.mimetype,
+      galerieId,
+    },
+  });
+}
 
-// ========== ROUTES JSON ==========
-app.use('/auth', require('./routes/auth.routes'));
-app.use('/galleries', require('./routes/gallery.routes'));
-app.use('/g', require('./routes/public.routes'));
-app.use('/users', require('./routes/user.routes'));
-const adminRoutes = require('./routes/admin.routes');
-app.use('/admin', adminRoutes);
+/**
+ * Liste les photos d'une galerie (utilisé aussi par le module public,
+ * en lecture seule, pour la page de consultation par slug).
+ */
+async function listerPhotosGalerie(galerieId) {
+  return prisma.photo.findMany({
+    where: { galerieId },
+    orderBy: { dateUpload: 'asc' },
+  });
+}
 
-// ========== FICHIERS STATIQUES ==========
-// ✅ C'EST ICI QUE TES PHOTOS SONT RENDUES ACCESSIBLES AU FRONTEND !
-// Quand le frontend demande https://jb-transfert-api.onrender.com/uploads/mon-image.jpg,
-// Express va chercher le fichier "mon-image.jpg" dans le dossier "uploadDir".
-app.use('/uploads', express.static(uploadDir));
+/**
+ * Récupère une photo par id, utile pour vérifier son appartenance avant
+ * suppression ou téléchargement.
+ */
+async function trouverParId(id) {
+  return prisma.photo.findUnique({ where: { id } });
+}
 
-// Healthcheck
-app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'ok', uploadDir });
-});
+/**
+ * Supprime une photo : le fichier sur Cloudinary ET la ligne en base.
+ * Si la suppression Cloudinary échoue, on nettoie quand même la base.
+ */
+async function supprimerPhoto(id) {
+  const photo = await prisma.photo.findUnique({ where: { id } });
 
-// 404
-app.use((req, res) => {
-  res.status(404).json({ error: 'Route introuvable' });
-});
+  if (!photo) {
+    return null;
+  }
 
-// Erreur global
-app.use(errorHandler);
+  if (photo.cloudinaryId) {
+    try {
+      await cloudinary.uploader.destroy(photo.cloudinaryId);
+    } catch (err) {
+      console.error(
+        `Suppression Cloudinary impossible pour ${photo.cloudinaryId} : ${err.message}`
+      );
+    }
+  }
 
-module.exports = app;
+  return prisma.photo.delete({ where: { id } });
+}
+
+module.exports = {
+  creerPhoto,
+  listerPhotosGalerie,
+  trouverParId,
+  supprimerPhoto,
+};
