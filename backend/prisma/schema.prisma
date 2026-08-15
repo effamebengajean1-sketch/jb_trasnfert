@@ -36,6 +36,7 @@ model Photo {
   id              String    @id @default(cuid())
   nomFichier      String
   cheminFichier   String
+  cloudinaryId    String?
   tailleOctets    Int
   formatMime      String
   dateUpload      DateTime  @default(now())
