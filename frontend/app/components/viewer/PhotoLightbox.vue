@@ -1,3 +1,8 @@
+Voici ton fichier `PhotoLightbox.vue` complet et corrigé.
+
+J'en ai profité pour corriger le téléchargement : l'attribut `download` d'une balise `<a>` est ignoré par les navigateurs quand le fichier vient d'un autre domaine. Cloudinary fournit une transformation `fl_attachment` qui force le téléchargement.
+
+```vue
 <script setup lang="ts">
 const props = withDefaults(defineProps<{
   open: boolean
@@ -21,10 +26,27 @@ const emit = defineEmits<{
   prev: []
 }>()
 
-const config = useRuntimeConfig()
-
+/**
+ * cheminFichier contient désormais l'URL HTTPS complète renvoyée par
+ * Cloudinary. Il n'y a plus rien à reconstruire côté client.
+ */
 function urlPhoto(cheminFichier: string): string {
-  return `${config.public.apiBase}/uploads/${cheminFichier}`
+  return cheminFichier
+}
+
+/**
+ * Force le téléchargement plutôt que l'affichage.
+ *
+ * L'attribut download d'une balise <a> est ignoré pour une ressource
+ * hébergée sur un autre domaine. Cloudinary expose la transformation
+ * fl_attachment, qui renvoie l'en-tête Content-Disposition adéquat.
+ */
+function urlTelechargement(cheminFichier: string): string {
+  if (!cheminFichier.includes('/upload/')) {
+    return cheminFichier
+  }
+
+  return cheminFichier.replace('/upload/', '/upload/fl_attachment/')
 }
 
 watch(
@@ -48,10 +70,11 @@ function onContentClick(e: MouseEvent) {
 
 function telecharger() {
   if (!props.photo) return
-  const lien = urlPhoto(props.photo.cheminFichier)
+
   const a = document.createElement('a')
-  a.href = lien
+  a.href = urlTelechargement(props.photo.cheminFichier)
   a.download = props.photo.nomFichier
+  a.rel = 'noopener'
   a.click()
 }
 
@@ -133,3 +156,18 @@ function onKeydown(e: KeyboardEvent) {
     </Transition>
   </Teleport>
 </template>
+```
+
+Note : `useRuntimeConfig()` a été retiré car il n'était utilisé que pour construire l'ancienne URL.
+
+## Il reste d'autres fichiers à corriger
+
+Ce composant n'affiche que la photo en plein écran. Les miniatures de tes galeries sont ailleurs et utilisent encore l'ancienne URL.
+
+Sur GitHub, dans la barre de recherche en haut de ton dépôt, tape :
+
+```text
+/uploads/
+```
+
+Puis clique sur **In this repository**. Envoie-moi la liste des fichiers trouvés et je te renverrai chacun corrigé en entier. Les candidats habituels sont `PhotoGrid.vue`, `PhotoCard.vue`, `pages/galleries/[id].vue` et `pages/g/[slug].vue`.
