@@ -18,13 +18,10 @@ const emit = defineEmits<{
   'delete': [photoId: string]
 }>()
 
-// ✅ CORRECTION : les fichiers sont servis par le backend (port 3001),
-// pas par le frontend (port 3000) — une URL relative comme "/uploads/..."
-// se résout contre l'origine de la page (localhost:3000) et donne un 404.
-const config = useRuntimeConfig()
-
+// cheminFichier contient désormais l'URL HTTPS complète de Cloudinary.
+// Il n'y a plus rien à reconstruire côté client.
 function urlPhoto(cheminFichier: string): string {
-  return `${config.public.apiBase}/uploads/${cheminFichier}`
+  return cheminFichier
 }
 
 function formatterTaille(octets: number): string {
