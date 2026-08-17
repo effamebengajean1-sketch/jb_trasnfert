@@ -1,8 +1,3 @@
-Voici ton fichier `PhotoLightbox.vue` complet et corrigé.
-
-J'en ai profité pour corriger le téléchargement : l'attribut `download` d'une balise `<a>` est ignoré par les navigateurs quand le fichier vient d'un autre domaine. Cloudinary fournit une transformation `fl_attachment` qui force le téléchargement.
-
-```vue
 <script setup lang="ts">
 const props = withDefaults(defineProps<{
   open: boolean
@@ -156,18 +151,3 @@ function onKeydown(e: KeyboardEvent) {
     </Transition>
   </Teleport>
 </template>
-```
-
-Note : `useRuntimeConfig()` a été retiré car il n'était utilisé que pour construire l'ancienne URL.
-
-## Il reste d'autres fichiers à corriger
-
-Ce composant n'affiche que la photo en plein écran. Les miniatures de tes galeries sont ailleurs et utilisent encore l'ancienne URL.
-
-Sur GitHub, dans la barre de recherche en haut de ton dépôt, tape :
-
-```text
-/uploads/
-```
-
-Puis clique sur **In this repository**. Envoie-moi la liste des fichiers trouvés et je te renverrai chacun corrigé en entier. Les candidats habituels sont `PhotoGrid.vue`, `PhotoCard.vue`, `pages/galleries/[id].vue` et `pages/g/[slug].vue`.
