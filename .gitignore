@@ -6,6 +6,7 @@ backend/uploads/*
 backend/dist/
 backend/coverage/
 backend/*.log
+backend/lib/generated/
 
 # Frontend
 frontend/node_modules/
