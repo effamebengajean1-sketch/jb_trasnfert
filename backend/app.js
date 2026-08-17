@@ -4,9 +4,21 @@ const errorHandler = require('./middlewares/errorHandler.middleware');
 
 const app = express();
 
-// Autorise les requêtes venant du frontend Nuxt (autre origine/port).
+// Autorise les requêtes venant du frontend (localhost en dev + Vercel en prod).
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: (origin, callback) => {
+    // Autorise les requêtes sans origine (Postman, curl, health checks)
+    if (!origin) return callback(null, true);
+
+    if (
+      origin === 'http://localhost:3000' ||
+      origin.endsWith('.vercel.app')
+    ) {
+      return callback(null, true);
+    }
+
+    callback(new Error('Non autorisé par CORS'));
+  },
   credentials: true,
 }));
 
