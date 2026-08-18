@@ -54,12 +54,8 @@ export default defineNuxtConfig({
           type: 'image/png',
           href: '/logo.png',
         },
-
-        // Ajout manuel pour garantir la détection du manifeste
-        {
-          rel: 'manifest',
-          href: '/manifest.webmanifest',
-        },
+        // Plus de lien manuel vers le manifeste ici.
+        // Le module PWA s'en charge automatiquement.
       ],
     },
   },
