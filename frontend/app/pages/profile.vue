@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// ⚠️ Script inchangé (uniquement la présentation a été modifiée)
 const { user, updateUser } = useAuth()
 const { patch } = useApi()
 
@@ -83,66 +84,139 @@ async function changerMotDePasse() {
 
 <template>
   <div class="max-w-container-max mx-auto px-gutter py-xl">
-    <h1 class="font-headline-xl text-headline-xl text-primary mb-lg">Mon Profil</h1>
+    <!-- En-tête de page amélioré -->
+    <header class="mb-lg">
+      <h1 class="font-headline-xl text-headline-xl text-primary mb-sm">
+        Mon Profil
+      </h1>
+      <p class="font-body-md text-on-surface-variant max-w-2xl">
+        Gérez vos informations personnelles et votre mot de passe.
+      </p>
+    </header>
 
     <div class="max-w-2xl space-y-lg">
       <!-- ═══ CARTE PROFIL ═══ -->
-      <div class="bg-surface rounded-xl shadow-trust p-lg md:p-xl border border-outline-variant">
-        <div class="flex items-center gap-md mb-lg">
-          <div class="w-16 h-16 bg-primary-fixed rounded-full flex items-center justify-center shrink-0">
-            <Icon name="material-symbols:person" class="text-3xl text-primary" />
+      <section class="bg-surface rounded-xl shadow-trust border border-outline-variant overflow-hidden">
+        <!-- En-tête de la carte -->
+        <div class="p-lg md:p-xl bg-surface-container-low border-b border-outline-variant">
+          <div class="flex items-center gap-md">
+            <!-- Avatar avec initiale -->
+            <div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center shrink-0 ring-4 ring-primary-container">
+              <span v-if="user?.nom" class="font-headline-md text-headline-md text-primary uppercase">
+                {{ user.nom.charAt(0) }}
+              </span>
+              <Icon v-else name="material-symbols:person" class="text-3xl text-primary" />
+            </div>
+            <div class="min-w-0">
+              <h2 class="font-headline-lg text-headline-lg text-primary truncate">
+                {{ user?.nom || 'Utilisateur' }}
+              </h2>
+              <p class="font-body-sm text-on-surface-variant truncate">
+                {{ user?.email || 'Aucun email renseigné' }}
+              </p>
+            </div>
           </div>
-          <div>
-            <h2 class="font-headline-lg text-headline-lg text-primary">
-              {{ user?.nom || 'Utilisateur' }}
-            </h2>
-            <p class="font-body-md text-on-surface-variant">{{ user?.email }}</p>
+        </div>
+
+        <!-- Corps de la carte -->
+        <div class="p-lg md:p-xl space-y-md">
+          <AppInput
+            v-model="nomEdit"
+            label="Nom"
+            icon="person"
+            autocomplete="name"
+            :disabled="enChargementProfil"
+            placeholder="Votre nom complet"
+          />
+          <AppInput
+            v-model="emailEdit"
+            type="email"
+            label="Email"
+            icon="mail"
+            autocomplete="email"
+            :disabled="enChargementProfil"
+            placeholder="exemple@domaine.fr"
+          />
+
+          <!-- Messages de statut -->
+          <div v-if="erreurProfil" class="flex items-start gap-2 p-md bg-error-container rounded-xl">
+            <Icon name="material-symbols:error" class="text-xl shrink-0 mt-0.5 text-on-error-container" />
+            <p class="font-body-sm text-on-error-container">{{ erreurProfil }}</p>
+          </div>
+          <div v-else-if="succesProfil" class="flex items-start gap-2 p-md bg-success-container rounded-xl">
+            <Icon name="material-symbols:check-circle" class="text-xl shrink-0 mt-0.5 text-on-success-container" />
+            <p class="font-body-sm text-on-success-container">{{ succesProfil }}</p>
+          </div>
+
+          <div class="pt-sm flex justify-end">
+            <AppButton :loading="enChargementProfil" @click="sauvegarderProfil">
+              Enregistrer les modifications
+            </AppButton>
           </div>
         </div>
-
-        <div class="space-y-md">
-          <AppInput v-model="nomEdit" label="Nom" icon="person" autocomplete="name" :disabled="enChargementProfil" />
-          <AppInput v-model="emailEdit" type="email" label="Email" icon="mail" autocomplete="email" :disabled="enChargementProfil" />
-        </div>
-
-        <div v-if="erreurProfil" class="mt-md p-md bg-error-container rounded-xl">
-          <p class="font-body-sm text-on-error-container">{{ erreurProfil }}</p>
-        </div>
-        <div v-if="succesProfil" class="mt-md p-md bg-success-container rounded-xl">
-          <p class="font-body-sm text-on-success-container">{{ succesProfil }}</p>
-        </div>
-
-        <div class="mt-lg flex justify-end">
-          <AppButton :loading="enChargementProfil" @click="sauvegarderProfil">
-            Enregistrer les modifications
-          </AppButton>
-        </div>
-      </div>
+      </section>
 
       <!-- ═══ CARTE MOT DE PASSE ═══ -->
-      <div class="bg-surface rounded-xl shadow-trust p-lg md:p-xl border border-outline-variant">
-        <h2 class="font-headline-md text-headline-md text-primary mb-xs">Sécurité</h2>
-        <p class="font-body-sm text-on-surface-variant mb-lg">Modifiez votre mot de passe ci-dessous.</p>
-
-        <div class="space-y-md">
-          <AppInput v-model="ancienMdp" type="password" name="current-password" autocomplete="current-password" label="Mot de passe actuel" icon="lock" :disabled="enChargementMdp" />
-          <AppInput v-model="nouveauMdp" type="password" name="new-password" autocomplete="new-password" label="Nouveau mot de passe" icon="lock" :disabled="enChargementMdp" />
-          <AppInput v-model="confirmationMdp" type="password" name="new-password" autocomplete="new-password" label="Confirmer le nouveau mot de passe" icon="lock" :disabled="enChargementMdp" />
+      <section class="bg-surface rounded-xl shadow-trust border border-outline-variant overflow-hidden">
+        <!-- En-tête de la carte -->
+        <div class="p-lg md:p-xl bg-surface-container-low border-b border-outline-variant">
+          <div class="flex items-center gap-sm">
+            <Icon name="material-symbols:lock" class="text-2xl text-primary" />
+            <h2 class="font-headline-md text-headline-md text-primary">Sécurité</h2>
+          </div>
+          <p class="font-body-sm text-on-surface-variant mt-xs">
+            Modifiez votre mot de passe ci-dessous.
+          </p>
         </div>
 
-        <div v-if="erreurMdp" class="mt-md p-md bg-error-container rounded-xl">
-          <p class="font-body-sm text-on-error-container">{{ erreurMdp }}</p>
-        </div>
-        <div v-if="succesMdp" class="mt-md p-md bg-success-container rounded-xl">
-          <p class="font-body-sm text-on-success-container">{{ succesMdp }}</p>
-        </div>
+        <!-- Corps de la carte -->
+        <div class="p-lg md:p-xl space-y-md">
+          <AppInput
+            v-model="ancienMdp"
+            type="password"
+            name="current-password"
+            autocomplete="current-password"
+            label="Mot de passe actuel"
+            icon="lock"
+            :disabled="enChargementMdp"
+          />
+          <AppInput
+            v-model="nouveauMdp"
+            type="password"
+            name="new-password"
+            autocomplete="new-password"
+            label="Nouveau mot de passe"
+            icon="lock"
+            :disabled="enChargementMdp"
+            hint="6 caractères minimum"
+          />
+          <AppInput
+            v-model="confirmationMdp"
+            type="password"
+            name="new-password"
+            autocomplete="new-password"
+            label="Confirmer le nouveau mot de passe"
+            icon="lock"
+            :disabled="enChargementMdp"
+          />
 
-        <div class="mt-lg flex justify-end">
-          <AppButton :loading="enChargementMdp" @click="changerMotDePasse">
-            Changer le mot de passe
-          </AppButton>
+          <!-- Messages de statut -->
+          <div v-if="erreurMdp" class="flex items-start gap-2 p-md bg-error-container rounded-xl">
+            <Icon name="material-symbols:error" class="text-xl shrink-0 mt-0.5 text-on-error-container" />
+            <p class="font-body-sm text-on-error-container">{{ erreurMdp }}</p>
+          </div>
+          <div v-else-if="succesMdp" class="flex items-start gap-2 p-md bg-success-container rounded-xl">
+            <Icon name="material-symbols:check-circle" class="text-xl shrink-0 mt-0.5 text-on-success-container" />
+            <p class="font-body-sm text-on-success-container">{{ succesMdp }}</p>
+          </div>
+
+          <div class="pt-sm flex justify-end">
+            <AppButton :loading="enChargementMdp" @click="changerMotDePasse">
+              Changer le mot de passe
+            </AppButton>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   </div>
 </template>
