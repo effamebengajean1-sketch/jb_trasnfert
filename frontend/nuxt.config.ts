@@ -54,8 +54,8 @@ export default defineNuxtConfig({
           type: 'image/png',
           href: '/logo.png',
         },
-        // Plus de lien manuel vers le manifeste ici.
-        // Le module PWA s'en charge automatiquement.
+        // Le lien vers le manifeste est maintenant géré automatiquement
+        // par le module @vite-pwa/nuxt.
       ],
     },
   },
