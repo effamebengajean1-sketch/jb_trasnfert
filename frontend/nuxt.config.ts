@@ -9,7 +9,6 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxt/icon',
     '@vite-pwa/nuxt',
-    '@nuxtjs/i18n',
   ],
 
   components: [
@@ -124,21 +123,6 @@ export default defineNuxtConfig({
           purpose: 'maskable',
         },
       ],
-
-      // Décommente si tu ajoutes les captures d'écran dans public/screenshots/
-      // screenshots: [
-      //   {
-      //     src: '/screenshots/desktop.png',
-      //     sizes: '1280x720',
-      //     type: 'image/png',
-      //     form_factor: 'wide',
-      //   },
-      //   {
-      //     src: '/screenshots/mobile.png',
-      //     sizes: '750x1334',
-      //     type: 'image/png',
-      //   },
-      // ],
     },
 
     workbox: {
