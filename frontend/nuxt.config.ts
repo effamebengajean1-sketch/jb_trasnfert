@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxt/icon',
     '@vite-pwa/nuxt',
+    '@nuxtjs/i18n',
   ],
 
   components: [
@@ -99,18 +100,45 @@ export default defineNuxtConfig({
 
       icons: [
         {
+          src: '/manifest-icon-192.png',
+          sizes: '192x192',
+          type: 'image/png',
+          purpose: 'any',
+        },
+        {
           src: '/manifest-icon-192.maskable.png',
           sizes: '192x192',
           type: 'image/png',
-          purpose: 'any maskable',
+          purpose: 'maskable',
+        },
+        {
+          src: '/manifest-icon-512.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'any',
         },
         {
           src: '/manifest-icon-512.maskable.png',
           sizes: '512x512',
           type: 'image/png',
-          purpose: 'any maskable',
+          purpose: 'maskable',
         },
       ],
+
+      // Décommente si tu ajoutes les captures d'écran dans public/screenshots/
+      // screenshots: [
+      //   {
+      //     src: '/screenshots/desktop.png',
+      //     sizes: '1280x720',
+      //     type: 'image/png',
+      //     form_factor: 'wide',
+      //   },
+      //   {
+      //     src: '/screenshots/mobile.png',
+      //     sizes: '750x1334',
+      //     type: 'image/png',
+      //   },
+      // ],
     },
 
     workbox: {
