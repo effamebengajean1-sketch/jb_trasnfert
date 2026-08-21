@@ -140,12 +140,38 @@ export default defineNuxtConfig({
 
       maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
 
-      // On ne tente pas de précacher une page HTML inexistante.
+      // On limite le précache aux fichiers essentiels et légers uniquement.
+      // Les grandes images (hero, galerie) ne sont plus précachées
+      // à l'installation : ça évite les timeouts / ERR_CONNECTION_RESET
+      // pendant l'install du service worker.
       globPatterns: [
-        '**/*.{js,css,png,svg,ico,webmanifest,woff,woff2}',
+        '**/*.{js,css,ico,webmanifest,woff,woff2}',
+      ],
+
+      // On exclut explicitement les images du dossier _nuxt du précache,
+      // au cas où elles matcheraient un pattern ci-dessus.
+      globIgnores: [
+        '**/_nuxt/*.png',
+        '**/_nuxt/*.jpg',
+        '**/_nuxt/*.jpeg',
+        '**/_nuxt/*.webp',
       ],
 
       runtimeCaching: [
+        // Les images sont mises en cache à la demande, au fur et à
+        // mesure qu'elles sont chargées par le visiteur (pas d'un coup
+        // à l'installation).
+        {
+          urlPattern: /\.(?:png|jpg|jpeg|svg|webp)$/i,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'images-cache',
+            expiration: {
+              maxEntries: 60,
+              maxAgeSeconds: 60 * 60 * 24 * 30,
+            },
+          },
+        },
         {
           urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
           handler: 'CacheFirst',
